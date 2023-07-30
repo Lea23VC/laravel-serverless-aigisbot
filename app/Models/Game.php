@@ -15,6 +15,11 @@ class Game extends Model
         'boxart',
         'release_date',
         'console_id',
+        'developer',
+        'publisher',
+        'genre',
+        'players',
+        'availability'
     ];
 
     public function console(): BelongsTo
