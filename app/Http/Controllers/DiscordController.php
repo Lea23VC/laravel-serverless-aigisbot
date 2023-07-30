@@ -11,7 +11,6 @@ class DiscordController extends Controller
 
     public function executeCommand(Request $request)
     {
-        Log::info("message received");
         // Your public key can be found in your application in the Developer Portal
         $PUBLIC_KEY = config('services.discord.public_key');
         $headers = $request->headers->all();
@@ -19,8 +18,6 @@ class DiscordController extends Controller
         $timestamp = $headers['x-signature-timestamp'][0] ?? null;
         $body = $request->getContent();
 
-        Log::info('signature: ' . $signature);
-        Log::info('PUBLIC_KEY: ' . $PUBLIC_KEY);
 
         $isVerified = sodium_crypto_sign_verify_detached(
             hex2bin($signature),

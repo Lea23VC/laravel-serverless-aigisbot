@@ -12,6 +12,7 @@ use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Filters\SelectFilter;
 
 class GameResource extends Resource
 {
@@ -47,7 +48,7 @@ class GameResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('console.fullname')
                     ->label('Console'),
-                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('name')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('url')->label('URL'),
                 Tables\Columns\TextColumn::make('release_date')
                     ->date()->toggleable(isToggledHiddenByDefault: true),
@@ -64,6 +65,8 @@ class GameResource extends Resource
             ])
             ->filters([
                 //
+                SelectFilter::make('console')->relationship('console', 'fullname')->multiple()
+
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
