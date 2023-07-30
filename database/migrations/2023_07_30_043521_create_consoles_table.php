@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('fullname');
+            $table->boolean('nasos')->default(false); // Add the nasos column here
             $table->timestamps();
         });
     }
