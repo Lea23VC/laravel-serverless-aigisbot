@@ -17,6 +17,11 @@ return new class extends Migration
             $table->string('url');
             $table->string('boxart')->nullable();
             $table->date('release_date')->nullable();
+            $table->string('developer')->nullable();
+            $table->string('publisher')->nullable();
+            $table->string('genre')->nullable();
+            $table->string('players')->nullable();
+            $table->boolean('availability')->default(true);
             $table->unsignedBigInteger('console_id');
             $table->foreign('console_id')->references('id')->on('consoles')->onDelete('cascade');
             $table->timestamps();
