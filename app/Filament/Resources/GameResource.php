@@ -19,12 +19,13 @@ class GameResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\Select::make('console_id')
-                    ->relationship('console', 'name')
+                    ->relationship('console', 'fullname')
                     ->required(),
                 Forms\Components\TextInput::make('name')
                     ->required()
@@ -35,14 +36,6 @@ class GameResource extends Resource
                 Forms\Components\TextInput::make('boxart')
                     ->maxLength(255),
                 Forms\Components\DatePicker::make('release_date'),
-                Forms\Components\TextInput::make('developer')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('publisher')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('genre')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('players')
-                    ->maxLength(255),
                 Forms\Components\Toggle::make('availability')
                     ->required(),
             ]);
@@ -52,47 +45,49 @@ class GameResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('console.name'),
+                Tables\Columns\TextColumn::make('console.fullname')
+                    ->label('Console'),
                 Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('url'),
-                Tables\Columns\TextColumn::make('boxart'),
+                Tables\Columns\TextColumn::make('url')->label('URL'),
                 Tables\Columns\TextColumn::make('release_date')
-                    ->date(),
-                Tables\Columns\TextColumn::make('developer'),
-                Tables\Columns\TextColumn::make('publisher'),
-                Tables\Columns\TextColumn::make('genre'),
-                Tables\Columns\TextColumn::make('players'),
+                    ->date()->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('developer')->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('publisher')->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('genre')->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('players')->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\IconColumn::make('availability')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
+                    ->dateTime()->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
+                    ->dateTime()->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
             'index' => Pages\ListGames::route('/'),
             'create' => Pages\CreateGame::route('/create'),
+            'view' => Pages\ViewGame::route('/{record}'),
             'edit' => Pages\EditGame::route('/{record}/edit'),
         ];
-    }    
+    }
 }
