@@ -41,3 +41,12 @@ functions:
 plugins:
     # We need to include the Bref plugin
     - ./vendor/bref/bref
+    - serverless-lift
+
+constructs:
+    website:
+        type: server-side-website
+        assets:
+            '/favicon.ico': public/favicon.ico
+            '/robots.txt': public/robots.txt
+            '/vendor/telescope': public/vendor/telescope

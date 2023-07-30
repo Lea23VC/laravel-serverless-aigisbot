@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Log;
+use App\Models\Game;
+use App\Models\Console;
+use App\Enums\ConsoleEnum;
 
 class DiscordController extends Controller
 {
@@ -35,17 +38,14 @@ class DiscordController extends Controller
 
         if ($bodyData['type'] == 2 && $isVerified) {
             $data = $bodyData['data'];
-            $config = collect(config('games'))->first(function ($game) use ($data) {
-                return $game['name'] == $data['name'];
-            });
+            // $config = collect(config('games'))->first(function ($game) use ($data) {
+            //     return $game['name'] == $data['name'];
+            // });
+            $consoleEnum = ConsoleEnum::fromValue(UserType::Administrator);
 
-            if ($config) {
+            if ($consoleEnum) {
                 try {
-                    $roms = $this->getRomUrl(
-                        $config['id'],
-                        $data['options'][0]['value']
-                    );
-
+                    $roms = Game::where('console.name', $consoleEnum->value)->pluck('name')->toArray();
                     return response()->json([
                         'type' => 4,
                         'data' => [
