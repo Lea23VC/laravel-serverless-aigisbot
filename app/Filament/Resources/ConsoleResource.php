@@ -41,11 +41,13 @@ class ConsoleResource extends Resource
 
                 Tables\Columns\TextColumn::make('fullname')->label('Name'),
                 Tables\Columns\TextColumn::make('name')->label('ID'),
+                Tables\Columns\TextColumn::make('games_count')->counts('games')->label('Number of games'),
             ])
             ->filters([
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
@@ -56,7 +58,7 @@ class ConsoleResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\GamesRelationManager::class,
         ];
     }
 
@@ -65,6 +67,7 @@ class ConsoleResource extends Resource
         return [
             'index' => Pages\ListConsoles::route('/'),
             'create' => Pages\CreateConsole::route('/create'),
+            'view' => Pages\ViewConsole::route('/{record}'),
             'edit' => Pages\EditConsole::route('/{record}/edit'),
         ];
     }

@@ -31,7 +31,7 @@ class GameResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('url')
+                Forms\Components\TextInput::make('url')->url()
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('boxart')
