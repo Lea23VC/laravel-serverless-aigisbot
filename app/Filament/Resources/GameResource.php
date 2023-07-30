@@ -93,4 +93,11 @@ class GameResource extends Resource
             'edit' => Pages\EditGame::route('/{record}/edit'),
         ];
     }
+
+    public static function getWidgets(): array
+    {
+        return [
+            GameResource\Widgets\StatsOverview::class,
+        ];
+    }
 }

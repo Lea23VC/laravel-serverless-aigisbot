@@ -16,4 +16,11 @@ class ListGames extends ListRecords
             Actions\CreateAction::make(),
         ];
     }
+
+    protected function getHeaderWidgets(): array
+    {
+        return [
+            GameResource\Widgets\StatsOverview::class,
+        ];
+    }
 }
