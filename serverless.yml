@@ -49,4 +49,4 @@ constructs:
         assets:
             '/favicon.ico': public/favicon.ico
             '/robots.txt': public/robots.txt
-            '/vendor/telescope': public/vendor/telescope
+            '/vendor/*': public/vendor
