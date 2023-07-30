@@ -42,7 +42,7 @@ class DiscordController extends Controller
             // $config = collect(config('games'))->first(function ($game) use ($data) {
             //     return $game['name'] == $data['name'];
             // });
-            $consoleEnum = ConsoleEnum::fromValue(UserType::Administrator);
+            $consoleEnum = ConsoleEnum::fromValue($data['name']);
 
             if ($consoleEnum) {
                 try {
