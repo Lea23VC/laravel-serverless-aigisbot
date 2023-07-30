@@ -47,8 +47,8 @@ class DiscordController extends Controller
             if ($consoleEnum) {
                 try {
                     $option = $data['options'][0];
-                    Log::info("option: " . $option["name"]);
-                    $roms = Console::where('name', $consoleEnum->value)->first()->games()->where('name', 'LIKE', '%' . $option["name"] . '%')->pluck('name')->toArray();
+                    Log::info("option: " . $option["value"]);
+                    $roms = Console::where('name', $consoleEnum->value)->first()->games()->where('name', 'LIKE', '%' . $option["value"] . '%')->pluck('name')->toArray();
                     // $roms = Game::where('console.name', $consoleEnum->value)->where('name', 'LIKE', '%' . $option["name"] . '%')->pluck('name')->toArray();
                     return response()->json([
                         'type' => 4,
