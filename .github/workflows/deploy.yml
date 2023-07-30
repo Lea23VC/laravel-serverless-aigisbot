@@ -14,6 +14,80 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+    # Create the .env file and add secrets to it
+      - name: Create .env file
+        run: |
+        echo "APP_NAME=${{ secrets.APP_NAME }}" >> .env
+        echo "APP_ENV=${{ secrets.APP_ENV }}" >> .env
+        echo "APP_KEY=${{ secrets.APP_KEY }}" >> .env
+        echo "APP_DEBUG=${{ secrets.APP_DEBUG }}" >> .env
+        echo "APP_URL=${{ secrets.APP_URL }}" >> .env
+        echo "LOG_CHANNEL=${{ secrets.LOG_CHANNEL }}" >> .env
+        echo "LOG_DEPRECATIONS_CHANNEL=${{ secrets.LOG_DEPRECATIONS_CHANNEL }}" >> .env
+        echo "LOG_LEVEL=${{ secrets.LOG_LEVEL }}" >> .env
+        echo "DB_CONNECTION=${{ secrets.DB_CONNECTION }}" >> .env
+        echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
+        echo "DB_PORT=${{ secrets.DB_PORT }}" >> .env
+        echo "DB_DATABASE=${{ secrets.DB_DATABASE }}" >> .env
+        echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> .env
+        echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
+        echo "BROADCAST_DRIVER=${{ secrets.BROADCAST_DRIVER }}" >> .env
+        echo "CACHE_DRIVER=${{ secrets.CACHE_DRIVER }}" >> .env
+        echo "FILESYSTEM_DISK=${{ secrets.FILESYSTEM_DISK }}" >> .env
+        echo "QUEUE_CONNECTION=${{ secrets.QUEUE_CONNECTION }}" >> .env
+        echo "SESSION_DRIVER=${{ secrets.SESSION_DRIVER }}" >> .env
+        echo "SESSION_LIFETIME=${{ secrets.SESSION_LIFETIME }}" >> .env
+        echo "MEMCACHED_HOST=${{ secrets.MEMCACHED_HOST }}" >> .env
+        echo "REDIS_HOST=${{ secrets.REDIS_HOST }}" >> .env
+        echo "REDIS_PASSWORD=${{ secrets.REDIS_PASSWORD }}" >> .env
+        echo "REDIS_PORT=${{ secrets.REDIS_PORT }}" >> .env
+        echo "MAIL_MAILER=${{ secrets.MAIL_MAILER }}" >> .env
+        echo "MAIL_HOST=${{ secrets.MAIL_HOST }}" >> .env
+        echo "MAIL_PORT=${{ secrets.MAIL_PORT }}" >> .env
+        echo "MAIL_USERNAME=${{ secrets.MAIL_USERNAME }}" >> .env
+        echo "MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }}" >> .env
+        echo "MAIL_ENCRYPTION=${{ secrets.MAIL_ENCRYPTION }}" >> .env
+        echo "MAIL_FROM_ADDRESS=${{ secrets.MAIL_FROM_ADDRESS }}" >> .env
+        echo "MAIL_FROM_NAME=${{ secrets.APP_NAME }}" >> .env
+        echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> .env
+        echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> .env
+        echo "AWS_DEFAULT_REGION=${{ secrets.AWS_DEFAULT_REGION }}" >> .env
+        echo "AWS_BUCKET=${{ secrets.AWS_BUCKET }}" >> .env
+        echo "AWS_USE_PATH_STYLE_ENDPOINT=${{ secrets.AWS_USE_PATH_STYLE_ENDPOINT }}" >> .env
+        echo "PUSHER_APP_ID=${{ secrets.PUSHER_APP_ID }}" >> .env
+        echo "PUSHER_APP_KEY=${{ secrets.PUSHER_APP_KEY }}" >> .env
+        echo "PUSHER_APP_SECRET=${{ secrets.PUSHER_APP_SECRET }}" >> .env
+        echo "PUSHER_HOST=${{ secrets.PUSHER_HOST }}" >> .env
+        echo "PUSHER_PORT=${{ secrets.PUSHER_PORT }}" >> .env
+        echo "PUSHER_SCHEME=${{ secrets.PUSHER_SCHEME }}" >> .env
+        echo "PUSHER_APP_CLUSTER=${{ secrets.PUSHER_APP_CLUSTER }}" >> .env
+        echo "VITE_APP_NAME=${{ secrets.APP_NAME }}" >> .env
+        echo "VITE_PUSHER_APP_KEY=${{ secrets.PUSHER_APP_KEY }}" >> .env
+        echo "VITE_PUSHER_HOST=${{ secrets.PUSHER_HOST }}" >> .env
+        echo "VITE_PUSHER_PORT=${{ secrets.PUSHER_PORT }}" >> .env
+        echo "VITE_PUSHER_SCHEME=${{ secrets.PUSHER_SCHEME }}" >> .env
+        echo "VITE_PUSHER_APP_CLUSTER=${{ secrets.PUSHER_APP_CLUSTER }}" >> .env
+        echo "DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}" >> .env
+        echo "DISCORD_PUBLIC_KEY=${{ secrets.DISCORD_PUBLIC_KEY }}" >> .env
+        echo "GOOGLE_AUTH=${{ secrets.GOOGLE_AUTH }}" >> .env
+        echo "ID_FOLDER_GBA=${{ secrets.ID_FOLDER_GBA }}" >> .env
+        echo "ID_FOLDER_GBC=${{ secrets.ID_FOLDER_GBC }}" >> .env
+        echo "ID_FOLDER_GB=${{ secrets.ID_FOLDER_GB }}" >> .env
+        echo "ID_FOLDER_NES=${{ secrets.ID_FOLDER_NES }}" >> .env
+        echo "ID_FOLDER_SNES=${{ secrets.ID_FOLDER_SNES }}" >> .env
+        echo "ID_FOLDER_64=${{ secrets.ID_FOLDER_64 }}" >> .env
+        echo "ID_FOLDER_GAMECUBE=${{ secrets.ID_FOLDER_GAMECUBE }}" >> .env
+        echo "ID_FOLDER_DS=${{ secrets.ID_FOLDER_DS }}" >> .env
+        echo "ID_FOLDER_PSX=${{ secrets.ID_FOLDER_PSX }}" >> .env
+        echo "ID_FOLDER_PS2=${{ secrets.ID_FOLDER_PS2 }}" >> .env
+        echo "ID_FOLDER_PSP=${{ secrets.ID_FOLDER_PSP }}" >> .env
+        echo "ID_FOLDER_3DS=${{ secrets.ID_FOLDER_3DS }}" >> .env
+        echo "ID_FOLDER_DREAMCAST=${{ secrets.ID_FOLDER_DREAMCAST }}" >> .env
+        echo "ID_FOLDER_WII=${{ secrets.ID_FOLDER_WII }}" >> .env
+        echo "ID_FOLDER_SWITCH=${{ secrets.ID_FOLDER_SWITCH }}" >> .env
+        echo "ID_FOLDER_GENESIS=${{ secrets.ID_FOLDER_GENESIS }}" >> .env
+        echo "SAGIRI_TOKEN=${{ secrets.SAGIRI_TOKEN }}" >> .env
+
       # This step sets up Node.js environment.
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -46,74 +120,3 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          APP_NAME: ${{ secrets.APP_NAME }}
-          APP_ENV: ${{ secrets.APP_ENV }}
-          APP_KEY: ${{ secrets.APP_KEY }}
-          APP_DEBUG: ${{ secrets.APP_DEBUG }}
-          APP_URL: ${{ secrets.APP_URL }}
-          LOG_CHANNEL: ${{ secrets.LOG_CHANNEL }}
-          LOG_DEPRECATIONS_CHANNEL: ${{ secrets.LOG_DEPRECATIONS_CHANNEL }}
-          LOG_LEVEL: ${{ secrets.LOG_LEVEL }}
-          DB_CONNECTION: ${{ secrets.DB_CONNECTION }}
-          DB_HOST: ${{ secrets.DB_HOST }}
-          DB_PORT: ${{ secrets.DB_PORT }}
-          DB_DATABASE: ${{ secrets.DB_DATABASE }}
-          DB_USERNAME: ${{ secrets.DB_USERNAME }}
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-          BROADCAST_DRIVER: ${{ secrets.BROADCAST_DRIVER }}
-          CACHE_DRIVER: ${{ secrets.CACHE_DRIVER }}
-          FILESYSTEM_DISK: ${{ secrets.FILESYSTEM_DISK }}
-          QUEUE_CONNECTION: ${{ secrets.QUEUE_CONNECTION }}
-          SESSION_DRIVER: ${{ secrets.SESSION_DRIVER }}
-          SESSION_LIFETIME: ${{ secrets.SESSION_LIFETIME }}
-          MEMCACHED_HOST: ${{ secrets.MEMCACHED_HOST }}
-          REDIS_HOST: ${{ secrets.REDIS_HOST }}
-          REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
-          REDIS_PORT: ${{ secrets.REDIS_PORT }}
-          MAIL_MAILER: ${{ secrets.MAIL_MAILER }}
-          MAIL_HOST: ${{ secrets.MAIL_HOST }}
-          MAIL_PORT: ${{ secrets.MAIL_PORT }}
-          MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
-          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
-          MAIL_ENCRYPTION: ${{ secrets.MAIL_ENCRYPTION }}
-          MAIL_FROM_ADDRESS: ${{ secrets.MAIL_FROM_ADDRESS }}
-          MAIL_FROM_NAME: ${{ secrets.APP_NAME }}
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-          AWS_BUCKET: ${{ secrets.AWS_BUCKET }}
-          AWS_USE_PATH_STYLE_ENDPOINT: ${{ secrets.AWS_USE_PATH_STYLE_ENDPOINT }}
-          PUSHER_APP_ID: ${{ secrets.PUSHER_APP_ID }}
-          PUSHER_APP_KEY: ${{ secrets.PUSHER_APP_KEY }}
-          PUSHER_APP_SECRET: ${{ secrets.PUSHER_APP_SECRET }}
-          PUSHER_HOST: ${{ secrets.PUSHER_HOST }}
-          PUSHER_PORT: ${{ secrets.PUSHER_PORT }}
-          PUSHER_SCHEME: ${{ secrets.PUSHER_SCHEME }}
-          PUSHER_APP_CLUSTER: ${{ secrets.PUSHER_APP_CLUSTER }}
-          VITE_APP_NAME: ${{ secrets.APP_NAME }}
-          VITE_PUSHER_APP_KEY: ${{ secrets.PUSHER_APP_KEY }}
-          VITE_PUSHER_HOST: ${{ secrets.PUSHER_HOST }}
-          VITE_PUSHER_PORT: ${{ secrets.PUSHER_PORT }}
-          VITE_PUSHER_SCHEME: ${{ secrets.PUSHER_SCHEME }}
-          VITE_PUSHER_APP_CLUSTER: ${{ secrets.PUSHER_APP_CLUSTER }}
-          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
-          DISCORD_PUBLIC_KEY: ${{ secrets.DISCORD_PUBLIC_KEY }}
-          GOOGLE_AUTH: ${{ secrets.GOOGLE_AUTH }}
-          ID_FOLDER_GBA: ${{ secrets.ID_FOLDER_GBA }}
-          ID_FOLDER_GBC: ${{ secrets.ID_FOLDER_GBC }}
-          ID_FOLDER_GB: ${{ secrets.ID_FOLDER_GB }}
-          ID_FOLDER_NES: ${{ secrets.ID_FOLDER_NES }}
-          ID_FOLDER_SNES: ${{ secrets.ID_FOLDER_SNES }}
-          ID_FOLDER_64: ${{ secrets.ID_FOLDER_64 }}
-          ID_FOLDER_GAMECUBE: ${{ secrets.ID_FOLDER_GAMECUBE }}
-          ID_FOLDER_DS: ${{ secrets.ID_FOLDER_DS }}
-          ID_FOLDER_PSX: ${{ secrets.ID_FOLDER_PSX }}
-          ID_FOLDER_PS2: ${{ secrets.ID_FOLDER_PS2 }}
-          ID_FOLDER_PSP: ${{ secrets.ID_FOLDER_PSP }}
-          ID_FOLDER_3DS: ${{ secrets.ID_FOLDER_3DS }}
-          ID_FOLDER_DREAMCAST: ${{ secrets.ID_FOLDER_DREAMCAST }}
-          ID_FOLDER_WII: ${{ secrets.ID_FOLDER_WII }}
-          ID_FOLDER_SWITCH: ${{ secrets.ID_FOLDER_SWITCH }}
-          ID_FOLDER_GENESIS: ${{ secrets.ID_FOLDER_GENESIS }}
-          SAGIRI_TOKEN: ${{ secrets.SAGIRI_TOKEN }}
-          SECRET_NAME: ${{ secrets.SECRET_NAME }}
-          OWNER: ${{ secrets.OWNER }}
-          REPO_NAME: ${{ secrets.REPO_NAME }}
