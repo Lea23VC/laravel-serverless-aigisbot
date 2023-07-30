@@ -16,6 +16,7 @@ class DiscordController extends Controller
     {
         // Your public key can be found in your application in the Developer Portal
         $PUBLIC_KEY = config('services.discord.public_key');
+        Log::info("PUBLIC_KEY: " . $PUBLIC_KEY);
         $headers = $request->headers->all();
         $signature = $headers['x-signature-ed25519'][0] ?? null;
         $timestamp = $headers['x-signature-timestamp'][0] ?? null;
