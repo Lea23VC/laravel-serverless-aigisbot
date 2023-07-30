@@ -1,12 +1,84 @@
 service: serverless-aigisbot
 
 provider:
-    name: aws
-    # The AWS region in which to deploy (us-east-1 is the default)
-    region: us-east-1
-    # Environment variables
-    environment:
-        APP_ENV: production # Or use ${sls:stage} if you want the environment to match the stage
+  name: aws
+  runtime: provided.al2
+  stage: prod
+  region: us-east-1
+  environment: # This section defines the environment variables for your Lambda function
+    APP_NAME: ${self:provider.environment.APP_NAME}
+    APP_ENV: 'production'
+    APP_KEY: ${self:provider.environment.APP_KEY}
+    APP_DEBUG: ${self:provider.environment.APP_DEBUG}
+    APP_URL: ${self:provider.environment.APP_URL}
+    LOG_CHANNEL: ${self:provider.environment.LOG_CHANNEL}
+    LOG_DEPRECATIONS_CHANNEL: ${self:provider.environment.LOG_DEPRECATIONS_CHANNEL}
+    LOG_LEVEL: ${self:provider.environment.LOG_LEVEL}
+    DB_CONNECTION: ${self:provider.environment.DB_CONNECTION}
+    DB_HOST: ${self:provider.environment.DB_HOST}
+    DB_PORT: ${self:provider.environment.DB_PORT}
+    DB_DATABASE: ${self:provider.environment.DB_DATABASE}
+    DB_USERNAME: ${self:provider.environment.DB_USERNAME}
+    DB_PASSWORD: ${self:provider.environment.DB_PASSWORD}
+    BROADCAST_DRIVER: ${self:provider.environment.BROADCAST_DRIVER}
+    CACHE_DRIVER: ${self:provider.environment.CACHE_DRIVER}
+    FILESYSTEM_DISK: ${self:provider.environment.FILESYSTEM_DISK}
+    QUEUE_CONNECTION: ${self:provider.environment.QUEUE_CONNECTION}
+    SESSION_DRIVER: ${self:provider.environment.SESSION_DRIVER}
+    SESSION_LIFETIME: ${self:provider.environment.SESSION_LIFETIME}
+    MEMCACHED_HOST: ${self:provider.environment.MEMCACHED_HOST}
+    REDIS_HOST: ${self:provider.environment.REDIS_HOST}
+    REDIS_PASSWORD: ${self:provider.environment.REDIS_PASSWORD}
+    REDIS_PORT: ${self:provider.environment.REDIS_PORT}
+    MAIL_MAILER: ${self:provider.environment.MAIL_MAILER}
+    MAIL_HOST: ${self:provider.environment.MAIL_HOST}
+    MAIL_PORT: ${self:provider.environment.MAIL_PORT}
+    MAIL_USERNAME: ${self:provider.environment.MAIL_USERNAME}
+    MAIL_PASSWORD: ${self:provider.environment.MAIL_PASSWORD}
+    MAIL_ENCRYPTION: ${self:provider.environment.MAIL_ENCRYPTION}
+    MAIL_FROM_ADDRESS: ${self:provider.environment.MAIL_FROM_ADDRESS}
+    MAIL_FROM_NAME: ${self:provider.environment.APP_NAME}
+    AWS_ACCESS_KEY_ID: ${self:provider.environment.AWS_ACCESS_KEY_ID}
+    AWS_SECRET_ACCESS_KEY: ${self:provider.environment.AWS_SECRET_ACCESS_KEY}
+    AWS_DEFAULT_REGION: ${self:provider.environment.AWS_DEFAULT_REGION}
+    AWS_BUCKET: ${self:provider.environment.AWS_BUCKET}
+    AWS_USE_PATH_STYLE_ENDPOINT: ${self:provider.environment.AWS_USE_PATH_STYLE_ENDPOINT}
+    PUSHER_APP_ID: ${self:provider.environment.PUSHER_APP_ID}
+    PUSHER_APP_KEY: ${self:provider.environment.PUSHER_APP_KEY}
+    PUSHER_APP_SECRET: ${self:provider.environment.PUSHER_APP_SECRET}
+    PUSHER_HOST: ${self:provider.environment.PUSHER_HOST}
+    PUSHER_PORT: ${self:provider.environment.PUSHER_PORT}
+    PUSHER_SCHEME: ${self:provider.environment.PUSHER_SCHEME}
+    PUSHER_APP_CLUSTER: ${self:provider.environment.PUSHER_APP_CLUSTER}
+    VITE_APP_NAME: ${self:provider.environment.APP_NAME}
+    VITE_PUSHER_APP_KEY: ${self:provider.environment.PUSHER_APP_KEY}
+    VITE_PUSHER_HOST: ${self:provider.environment.PUSHER_HOST}
+    VITE_PUSHER_PORT: ${self:provider.environment.PUSHER_PORT}
+    VITE_PUSHER_SCHEME: ${self:provider.environment.PUSHER_SCHEME}
+    VITE_PUSHER_APP_CLUSTER: ${self:provider.environment.PUSHER_APP_CLUSTER}
+    DISCORD_TOKEN: ${self:provider.environment.DISCORD_TOKEN}
+    DISCORD_PUBLIC_KEY: ${self:provider.environment.DISCORD_PUBLIC_KEY}
+    GOOGLE_AUTH: ${self:provider.environment.GOOGLE_AUTH}
+    ID_FOLDER_GBA: ${self:provider.environment.ID_FOLDER_GBA}
+    ID_FOLDER_GBC: ${self:provider.environment.ID_FOLDER_GBC}
+    ID_FOLDER_GB: ${self:provider.environment.ID_FOLDER_GB}
+    ID_FOLDER_NES: ${self:provider.environment.ID_FOLDER_NES}
+    ID_FOLDER_SNES: ${self:provider.environment.ID_FOLDER_SNES}
+    ID_FOLDER_64: ${self:provider.environment.ID_FOLDER_64}
+    ID_FOLDER_GAMECUBE: ${self:provider.environment.ID_FOLDER_GAMECUBE}
+    ID_FOLDER_DS: ${self:provider.environment.ID_FOLDER_DS}
+    ID_FOLDER_PSX: ${self:provider.environment.ID_FOLDER_PSX}
+    ID_FOLDER_PS2: ${self:provider.environment.ID_FOLDER_PS2}
+    ID_FOLDER_PSP: ${self:provider.environment.ID_FOLDER_PSP}
+    ID_FOLDER_3DS: ${self:provider.environment.ID_FOLDER_3DS}
+    ID_FOLDER_DREAMCAST: ${self:provider.environment.ID_FOLDER_DREAMCAST}
+    ID_FOLDER_WII: ${self:provider.environment.ID_FOLDER_WII}
+    ID_FOLDER_SWITCH: ${self:provider.environment.ID_FOLDER_SWITCH}
+    ID_FOLDER_GENESIS: ${self:provider.environment.ID_FOLDER_GENESIS}
+    SAGIRI_TOKEN: ${self:provider.environment.SAGIRI_TOKEN}
+    SECRET_NAME: ${self:provider.environment.SECRET_NAME}
+    OWNER: ${self:provider.environment.OWNER}
+    REPO_NAME: ${self:provider.environment.REPO_NAME}
 
 package:
     # Files and directories to exclude from deployment
