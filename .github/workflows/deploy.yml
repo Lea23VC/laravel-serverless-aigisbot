@@ -34,7 +34,6 @@ jobs:
           echo "BROADCAST_DRIVER=${{ secrets.BROADCAST_DRIVER }}" >> .env
           echo "CACHE_DRIVER=${{ secrets.CACHE_DRIVER }}" >> .env
           echo "FILESYSTEM_DISK=${{ secrets.FILESYSTEM_DISK }}" >> .env
-          echo "QUEUE_CONNECTION=${{ secrets.QUEUE_CONNECTION }}" >> .env
           echo "SESSION_DRIVER=${{ secrets.SESSION_DRIVER }}" >> .env
           echo "SESSION_LIFETIME=${{ secrets.SESSION_LIFETIME }}" >> .env
           echo "MEMCACHED_HOST=${{ secrets.MEMCACHED_HOST }}" >> .env

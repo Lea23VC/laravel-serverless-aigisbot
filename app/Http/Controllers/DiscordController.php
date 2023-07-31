@@ -51,11 +51,24 @@ class DiscordController extends Controller
                     $roms = \App\Models\Console::where('name', $consoleEnum->value)
                         ->first()
                         ->games()
-                        ->select('name', 'url') // Select only the 'name' and 'url' columns
-                        ->where('name', 'LIKE', '%' . $option["value"] . '%')
-                        ->limit(10) // Limit the query to 10 results
-                        ->pluck('name', 'url') // Pluck the 'name' and 'url' columns and combine them into an associative array
-                        ->map(fn ($name, $url) => "$name: $url") // Format the array elements as "name: url"
+                        ->select('name', 'url')
+                        ->when($option["value"], function ($query, $searchValue) {
+                            return $query->where('name', 'LIKE', '%' . $searchValue . '%');
+                        })
+                        ->limit(10)
+                        ->get()
+                        ->map(function ($game) {
+                            $name = $game->name;
+                            $url = $game->url;
+                            $password = $game->password;
+
+                            // Include the password in the array only if it exists
+                            if ($password) {
+                                return "$name: $url (Password: $password)";
+                            }
+
+                            return "$name: $url";
+                        })
                         ->toArray();
 
                     return response()->json([
