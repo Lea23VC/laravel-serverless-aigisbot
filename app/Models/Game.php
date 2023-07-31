@@ -13,6 +13,7 @@ class Game extends Model
         'name',
         'url',
         'boxart',
+        'password',
         'release_date',
         'console_id',
         'developer',

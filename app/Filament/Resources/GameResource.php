@@ -34,6 +34,8 @@ class GameResource extends Resource
                 Forms\Components\TextInput::make('url')->url()
                     ->required()
                     ->maxLength(255),
+                Forms\Components\TextInput::make('password')
+                    ->maxLength(255),
                 Forms\Components\TextInput::make('boxart')
                     ->maxLength(255),
                 Forms\Components\DatePicker::make('release_date'),
@@ -50,6 +52,7 @@ class GameResource extends Resource
                     ->label('Console'),
                 Tables\Columns\TextColumn::make('name')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('url')->label('URL'),
+                Tables\Columns\TextColumn::make('password')->label('Password'),
                 Tables\Columns\TextColumn::make('release_date')
                     ->date()->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('developer')->toggleable(isToggledHiddenByDefault: true),
