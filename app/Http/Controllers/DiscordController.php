@@ -55,7 +55,7 @@ class DiscordController extends Controller
                         ->where('name', 'LIKE', '%' . $option["value"] . '%')
                         ->limit(10) // Limit the query to 10 results
                         ->pluck('name', 'url') // Pluck the 'name' and 'url' columns and combine them into an associative array
-                        ->map(fn ($url, $name) => "$name: $url") // Format the array elements as "name: url"
+                        ->map(fn ($name, $url) => "$name: $url") // Format the array elements as "name: url"
                         ->toArray();
 
                     return response()->json([
