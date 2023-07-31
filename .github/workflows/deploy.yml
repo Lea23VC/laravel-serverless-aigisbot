@@ -87,6 +87,7 @@ jobs:
           echo "ID_FOLDER_SWITCH=${{ secrets.ID_FOLDER_SWITCH }}" >> .env
           echo "ID_FOLDER_GENESIS=${{ secrets.ID_FOLDER_GENESIS }}" >> .env
           echo "SAGIRI_TOKEN=${{ secrets.SAGIRI_TOKEN }}" >> .env
+          echo "ASSET_URL=${{ secrets.ASSET_URL }}" >> .env
 
       # This step sets up Node.js environment.
       - name: Setup Node.js
