@@ -9,7 +9,7 @@ create_secrets:
 		if [[ $$var != "" && $$value != "" ]]; then \
 			value=$$(echo "$$value" | sed "s/'//g"); \
 			echo "Creating secret $$var with value: $$value..."; \
-			echo "$$value" | gh secret set $$var --body - ; \
+			echo "$$value" | gh secret set $$var --body $$value ; \
 		fi; \
 	done < .env
 	@echo "Secrets created successfully."
