@@ -48,12 +48,20 @@ class DiscordController extends Controller
                 try {
                     $option = $data['options'][0];
                     Log::info("option: " . $option["value"]);
-                    $roms = Console::where('name', $consoleEnum->value)->first()->games()->where('name', 'LIKE', '%' . $option["value"] . '%')->pluck('name')->toArray();
-                    // $roms = Game::where('console.name', $consoleEnum->value)->where('name', 'LIKE', '%' . $option["name"] . '%')->pluck('name')->toArray();
+                    $roms = \App\Models\Console::where('name', $consoleEnum->value)
+                        ->first()
+                        ->games()
+                        ->select('name', 'url') // Select only the 'name' and 'url' columns
+                        ->where('name', 'LIKE', '%' . $option["value"] . '%')
+                        ->limit(10) // Limit the query to 10 results
+                        ->pluck('name', 'url') // Pluck the 'name' and 'url' columns and combine them into an associative array
+                        ->map(fn ($url, $name) => "$name: $url") // Format the array elements as "name: url"
+                        ->toArray();
+
                     return response()->json([
                         'type' => 4,
                         'data' => [
-                            'content' => 'Here are the roms you requested:  ' . PHP_EOL . PHP_EOL . implode(PHP_EOL . PHP_EOL, array_slice($roms, 0, 10)),
+                            'content' => 'Here are the roms you requested:  ' . PHP_EOL . PHP_EOL . implode(PHP_EOL . PHP_EOL, $roms),
                         ],
                     ]);
                 } catch (\Exception $e) {
