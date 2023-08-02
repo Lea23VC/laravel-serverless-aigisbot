@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Log;
-use App\Models\Game;
 use App\Models\Console;
 use App\Enums\ConsoleEnum;
 
@@ -48,10 +47,10 @@ class DiscordController extends Controller
                 try {
                     $option = $data['options'][0];
                     Log::info("option: " . $option["value"]);
-                    $roms = \App\Models\Console::where('name', $consoleEnum->value)
+                    $roms = Console::where('name', $consoleEnum->value)
                         ->first()
                         ->games()
-                        ->select('name', 'url')
+                        ->select('name', 'url', 'password')
                         ->when($option["value"], function ($query, $searchValue) {
                             return $query->where('name', 'LIKE', '%' . $searchValue . '%');
                         })
