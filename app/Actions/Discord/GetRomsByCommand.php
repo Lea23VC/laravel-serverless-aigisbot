@@ -13,15 +13,12 @@ class GetRomsByCommand
     protected Console $console;
     protected String $gameName;
 
-    public function __construct(ConsoleEnum $consoleEnum, String $gameName)
-    {
 
+    public function handle(ConsoleEnum $consoleEnum, string $gameName): array
+    {
         $this->console = Console::where('name', $consoleEnum->value)->first();
         $this->gameName = $gameName;
-    }
 
-    public function handle(): array
-    {
         $roms =  $this->console
             ->games()
             ->select('name', 'url', 'password')
