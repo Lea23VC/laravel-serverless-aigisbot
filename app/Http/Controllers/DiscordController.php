@@ -56,12 +56,8 @@ class DiscordController extends Controller
                         ],
                     ]);
                 } catch (\Exception $e) {
-                    return response()->json([
-                        'type' => 4,
-                        'data' => [
-                            'content' => 'Some error happened. ' . $e->getMessage(),
-                        ],
-                    ]);
+                    // Instead of returning a response, throw an exception
+                    throw new \Exception('Some error happened: ' . $e->getMessage());
                 }
             } else {
                 return response()->json([
