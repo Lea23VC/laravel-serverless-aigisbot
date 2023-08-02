@@ -18,3 +18,7 @@ yarn-error.log
 /.idea
 /.vscode
 /.serverless
+
+schema-directives.graphql
+programmatic-types.graphql
+_lighthouse_ide_helper.php

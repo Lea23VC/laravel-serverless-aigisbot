@@ -19,6 +19,8 @@
         "laravel/telescope": "^4.15",
         "laravel/tinker": "^2.8",
         "lorisleiva/laravel-actions": "^2.7",
+        "mll-lab/laravel-graphiql": "^3.1",
+        "nuwave/lighthouse": "*",
         "paragonie/sodium_compat": "^1.20"
     },
     "require-dev": {

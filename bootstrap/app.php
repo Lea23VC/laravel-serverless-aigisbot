@@ -52,4 +52,15 @@ $app->singleton(
 |
 */
 
+/*
+|--------------------------------------------------------------------------
+/ Lighthouse
+ */
+
+// $app->register(\Nuwave\Lighthouse\LighthouseServiceProvider::class);
+
+// $app->register(\Nuwave\Lighthouse\Pagination\PaginationServiceProvider::class);
+// $app->register(\Nuwave\Lighthouse\Validation\ValidationServiceProvider::class);
+
+
 return $app;
