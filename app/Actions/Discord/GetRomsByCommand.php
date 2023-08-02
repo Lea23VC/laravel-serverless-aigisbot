@@ -3,6 +3,7 @@
 namespace App\Actions\Discord;
 
 use App\Models\Console;
+use App\Enums\ConsoleEnum;
 use Lorisleiva\Actions\Concerns\AsAction;
 
 class GetRomsByCommand
