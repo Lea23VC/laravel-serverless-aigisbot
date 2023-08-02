@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Log;
 use App\Models\Console;
 use App\Enums\ConsoleEnum;
+use App\Actions\Discord\GetRomsByCommand;
 
 class DiscordController extends Controller
 {
@@ -46,29 +47,7 @@ class DiscordController extends Controller
             if ($consoleEnum) {
                 try {
                     $option = $data['options'][0];
-                    Log::info("option: " . $option["value"]);
-                    $roms = Console::where('name', $consoleEnum->value)
-                        ->first()
-                        ->games()
-                        ->select('name', 'url', 'password')
-                        ->when($option["value"], function ($query, $searchValue) {
-                            return $query->where('name', 'LIKE', '%' . $searchValue . '%');
-                        })
-                        ->limit(10)
-                        ->get()
-                        ->map(function ($game) {
-                            $name = $game->name;
-                            $url = $game->url;
-                            $password = $game->password;
-
-                            // Include the password in the array only if it exists
-                            if ($password) {
-                                return "$name: $url (Password: $password)";
-                            }
-
-                            return "$name: $url";
-                        })
-                        ->toArray();
+                    $roms = GetRomsByCommand::run($consoleEnum, $option['value']);
 
                     return response()->json([
                         'type' => 4,
