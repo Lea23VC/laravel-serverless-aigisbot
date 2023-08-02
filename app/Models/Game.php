@@ -20,7 +20,9 @@ class Game extends Model
         'publisher',
         'genre',
         'players',
-        'availability'
+        'availability',
+        'created_at',
+        'updated_at',
     ];
 
     public function console(): BelongsTo

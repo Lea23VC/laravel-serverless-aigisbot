@@ -1,22 +1,36 @@
 "A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
-scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+scalar DateTime
+    @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
 "Indicates what fields are available at the top level of a query operation."
 type Query {
     "Find a single user by an identifying attribute."
     user(
-      "Search by primary key."
-      id: ID @eq @rules(apply: ["prohibits:email", "required_without:email"])
+        "Search by primary key."
+        id: ID @eq @rules(apply: ["prohibits:email", "required_without:email"])
 
-      "Search by email address."
-      email: String @eq @rules(apply: ["prohibits:id", "required_without:id", "email"])
+        "Search by email address."
+        email: String
+            @eq
+            @rules(apply: ["prohibits:id", "required_without:id", "email"])
     ): User @find
 
     "List multiple users."
     users(
-      "Filters by name. Accepts SQL LIKE wildcards `%` and `_`."
-      name: String @where(operator: "like")
+        "Filters by name. Accepts SQL LIKE wildcards `%` and `_`."
+        name: String @where(operator: "like")
     ): [User!]! @paginate(defaultCount: 10)
+
+    hello: String!
+
+    "Find a single game by an identifying attribute."
+    game("Search by primary key." name: String! @eq): Game @find
+
+    "List multiple games."
+    games(
+        "Filters by name. Accepts SQL LIKE wildcards `%` and `_`."
+        name: String @like
+    ): [Game!]! @paginate(defaultCount: 10)
 }
 
 "Account of a person who utilizes this application."
@@ -38,4 +52,65 @@ type User {
 
     "When the account was last updated."
     updated_at: DateTime!
+}
+
+type Game {
+    "Unique primary key."
+    id: ID!
+
+    "Name of the game."
+    name: String!
+
+    "URL of the game."
+    url: String!
+
+    "URL of the game's box art."
+    boxart: String
+
+    "Password for the game (if applicable)."
+    password: String
+
+    "Release date of the game."
+    release_date: DateTime
+
+    "Developer of the game."
+    developer: String
+
+    "Publisher of the game."
+    publisher: String
+
+    "Genre of the game."
+    genre: String
+
+    "Number of players the game supports."
+    players: String
+
+    "Availability status of the game."
+    availability: Boolean
+
+    "When the game was created."
+    created_at: DateTime
+
+    "When the game was last updated."
+    updated_at: DateTime
+
+    "Console associated with the game."
+    console: Console!
+}
+
+type Console {
+    "Unique primary key."
+    id: ID!
+
+    "Name of the console."
+    name: String!
+
+    "When the console was created."
+    created_at: DateTime
+
+    "When the console was last updated."
+    updated_at: DateTime
+
+    "Games associated with the console."
+    games: [Game!]!
 }
