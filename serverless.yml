@@ -48,6 +48,8 @@ constructs:
     website:
         type: server-side-website
         assets:
+            '/js/*': public/js
+            '/css/*': public/css
             '/favicon.ico': public/favicon.ico
             '/robots.txt': public/robots.txt
             '/vendor/telescope/*': public/vendor/telescope
