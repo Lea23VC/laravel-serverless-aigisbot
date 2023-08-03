@@ -1,0 +1,18 @@
+type Console {
+    "Unique primary key."
+    id: ID!
+
+    "Name of the console."
+    name: String!
+
+    fullname: String!
+
+    "When the console was created."
+    created_at: DateTime
+
+    "When the console was last updated."
+    updated_at: DateTime
+
+    "Games associated with the console."
+    games: [Game!]!
+}

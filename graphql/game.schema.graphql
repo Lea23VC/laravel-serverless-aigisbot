@@ -1,0 +1,43 @@
+type Game {
+    "Unique primary key."
+    id: ID!
+
+    "Name of the game."
+    name: String!
+
+    "URL of the game."
+    url: String!
+
+    "URL of the game's box art."
+    boxart: String
+
+    "Password for the game (if applicable)."
+    password: String
+
+    "Release date of the game."
+    release_date: DateTime
+
+    "Developer of the game."
+    developer: String
+
+    "Publisher of the game."
+    publisher: String
+
+    "Genre of the game."
+    genre: String
+
+    "Number of players the game supports."
+    players: String
+
+    "Availability status of the game."
+    availability: Boolean
+
+    "When the game was created."
+    created_at: DateTime
+
+    "When the game was last updated."
+    updated_at: DateTime
+
+    "Console associated with the game."
+    console: Console!
+}
