@@ -40,7 +40,7 @@ class GameResource extends Resource
                     ->maxLength(255),
                 FileUpload::make('boxart')
                     ->disk('s3')
-                    ->directory('games-boxarts')
+                    ->directory('games-boxarts')->image()
                     ->visibility('private'),
                 // Forms\Components\TextInput::make('boxart')
                 //     ->maxLength(255),
