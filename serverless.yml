@@ -54,6 +54,7 @@ constructs:
             '/robots.txt': public/robots.txt
             '/vendor/telescope/*': public/vendor/telescope
 
+
     jobs:
         type: queue
         worker:
@@ -81,3 +82,4 @@ resources:
               AllowedOrigins:
                 - "http://127.0.0.1:8000"
                 - "https://pt69uke176.execute-api.us-east-1.amazonaws.com"
+                - "https://d32n8agm3v8nrq.cloudfront.net"
