@@ -13,6 +13,8 @@ use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Filters\SelectFilter;
+use Filament\Actions;
+use Filament\Forms\Components\FileUpload;
 
 class GameResource extends Resource
 {
@@ -36,8 +38,12 @@ class GameResource extends Resource
                     ->maxLength(255),
                 Forms\Components\TextInput::make('password')
                     ->maxLength(255),
-                Forms\Components\TextInput::make('boxart')
-                    ->maxLength(255),
+                FileUpload::make('boxart')
+                    ->disk('s3')
+                    ->directory('games-boxarts')
+                    ->visibility('private'),
+                // Forms\Components\TextInput::make('boxart')
+                //     ->maxLength(255),
                 Forms\Components\DatePicker::make('release_date'),
                 Forms\Components\Toggle::make('availability')
                     ->required(),

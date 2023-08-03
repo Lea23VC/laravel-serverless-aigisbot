@@ -60,3 +60,24 @@ constructs:
             handler: Bref\LaravelBridge\Queue\QueueHandler
             runtime: php-81
             timeout: 60 # seconds
+
+
+resources:
+  Resources:
+    MyS3Bucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: aigisbot-images
+        CorsConfiguration:
+          CorsRules:
+            - AllowedHeaders:
+                - "*"
+              AllowedMethods:
+                - GET
+                - PUT
+                - POST
+                - DELETE
+                - HEAD
+              AllowedOrigins:
+                - "http://127.0.0.1:8000"
+                - "https://pt69uke176.execute-api.us-east-1.amazonaws.com"
