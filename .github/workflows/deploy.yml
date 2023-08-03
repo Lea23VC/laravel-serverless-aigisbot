@@ -14,10 +14,32 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Create the .env file and add secrets to it
-      # This step sets up the environment variables
-      - name: Set up environment variables
+      # This step sets up Node.js environment.
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+
+      # This step installs the Serverless Framework globally.
+      - name: Install Serverless Framework
+        run: npm install -g serverless
+
+      # This step installs the Serverless Framework globally.
+      - name: Install Node modules
+        run: npm install
+
+      # This step sets up PHP environment with the specified version.
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.1"
+
+      # This step installs Composer dependencies with the specified options.
+      - name: Install Composer dependencies
+        uses: "ramsey/composer-install@v2"
+        with:
+          composer-options: "--prefer-dist --optimize-autoloader --no-dev"
         env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           APP_NAME: ${{ secrets.APP_NAME }}
           APP_ENV: ${{ secrets.APP_ENV }}
           APP_KEY: ${{ secrets.APP_KEY }}
@@ -49,8 +71,6 @@ jobs:
           MAIL_ENCRYPTION: ${{ secrets.MAIL_ENCRYPTION }}
           MAIL_FROM_ADDRESS: ${{ secrets.MAIL_FROM_ADDRESS }}
           MAIL_FROM_NAME: ${{ secrets.MAIL_FROM_NAME }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
           AWS_BUCKET: ${{ secrets.AWS_BUCKET }}
           AWS_USE_PATH_STYLE_ENDPOINT: ${{ secrets.AWS_USE_PATH_STYLE_ENDPOINT }}
@@ -88,32 +108,6 @@ jobs:
           ID_FOLDER_GENESIS: ${{ secrets.ID_FOLDER_GENESIS }}
           SAGIRI_TOKEN: ${{ secrets.SAGIRI_TOKEN }}
           ASSET_URL: ${{ secrets.ASSET_URL }}
-        run: |
-          printenv | grep _ | while IFS='=' read -r key value; do echo "$key='$(echo -e "${value}" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')'"; done >> .env
-
-      # This step sets up Node.js environment.
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-
-      # This step installs the Serverless Framework globally.
-      - name: Install Serverless Framework
-        run: npm install -g serverless
-
-      # This step installs the Serverless Framework globally.
-      - name: Install Node modules
-        run: npm install
-
-      # This step sets up PHP environment with the specified version.
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.1"
-
-      # This step installs Composer dependencies with the specified options.
-      - name: Install Composer dependencies
-        uses: "ramsey/composer-install@v2"
-        with:
-          composer-options: "--prefer-dist --optimize-autoloader --no-dev"
 
       # This step deploys your application to AWS Lambda using the Serverless Framework.
       - name: Deploy to AWS Lambda
@@ -123,6 +117,74 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          APP_NAME: ${{ secrets.APP_NAME }}
+          APP_ENV: ${{ secrets.APP_ENV }}
+          APP_KEY: ${{ secrets.APP_KEY }}
+          APP_DEBUG: ${{ secrets.APP_DEBUG }}
+          APP_URL: ${{ secrets.APP_URL }}
+          LOG_CHANNEL: ${{ secrets.LOG_CHANNEL }}
+          LOG_DEPRECATIONS_CHANNEL: ${{ secrets.LOG_DEPRECATIONS_CHANNEL }}
+          LOG_LEVEL: ${{ secrets.LOG_LEVEL }}
+          DB_CONNECTION: ${{ secrets.DB_CONNECTION }}
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_PORT: ${{ secrets.DB_PORT }}
+          DB_DATABASE: ${{ secrets.DB_DATABASE }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          BROADCAST_DRIVER: ${{ secrets.BROADCAST_DRIVER }}
+          CACHE_DRIVER: ${{ secrets.CACHE_DRIVER }}
+          FILESYSTEM_DISK: ${{ secrets.FILESYSTEM_DISK }}
+          SESSION_DRIVER: ${{ secrets.SESSION_DRIVER }}
+          SESSION_LIFETIME: ${{ secrets.SESSION_LIFETIME }}
+          MEMCACHED_HOST: ${{ secrets.MEMCACHED_HOST }}
+          REDIS_HOST: ${{ secrets.REDIS_HOST }}
+          REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
+          REDIS_PORT: ${{ secrets.REDIS_PORT }}
+          MAIL_MAILER: ${{ secrets.MAIL_MAILER }}
+          MAIL_HOST: ${{ secrets.MAIL_HOST }}
+          MAIL_PORT: ${{ secrets.MAIL_PORT }}
+          MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+          MAIL_ENCRYPTION: ${{ secrets.MAIL_ENCRYPTION }}
+          MAIL_FROM_ADDRESS: ${{ secrets.MAIL_FROM_ADDRESS }}
+          MAIL_FROM_NAME: ${{ secrets.MAIL_FROM_NAME }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+          AWS_BUCKET: ${{ secrets.AWS_BUCKET }}
+          AWS_USE_PATH_STYLE_ENDPOINT: ${{ secrets.AWS_USE_PATH_STYLE_ENDPOINT }}
+          PUSHER_APP_ID: ${{ secrets.PUSHER_APP_ID }}
+          PUSHER_APP_KEY: ${{ secrets.PUSHER_APP_KEY }}
+          PUSHER_APP_SECRET: ${{ secrets.PUSHER_APP_SECRET }}
+          PUSHER_HOST: ${{ secrets.PUSHER_HOST }}
+          PUSHER_PORT: ${{ secrets.PUSHER_PORT }}
+          PUSHER_SCHEME: ${{ secrets.PUSHER_SCHEME }}
+          PUSHER_APP_CLUSTER: ${{ secrets.PUSHER_APP_CLUSTER }}
+          VITE_APP_NAME: ${{ secrets.VITE_APP_NAME }}
+          VITE_PUSHER_APP_KEY: ${{ secrets.VITE_PUSHER_APP_KEY }}
+          VITE_PUSHER_HOST: ${{ secrets.VITE_PUSHER_HOST }}
+          VITE_PUSHER_PORT: ${{ secrets.VITE_PUSHER_PORT }}
+          VITE_PUSHER_SCHEME: ${{ secrets.VITE_PUSHER_SCHEME }}
+          VITE_PUSHER_APP_CLUSTER: ${{ secrets.VITE_PUSHER_APP_CLUSTER }}
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+          DISCORD_PUBLIC_KEY: ${{ secrets.DISCORD_PUBLIC_KEY }}
+          GOOGLE_AUTH: ${{ secrets.GOOGLE_AUTH }}
+          ID_FOLDER_GBA: ${{ secrets.ID_FOLDER_GBA }}
+          ID_FOLDER_GBC: ${{ secrets.ID_FOLDER_GBC }}
+          ID_FOLDER_GB: ${{ secrets.ID_FOLDER_GB }}
+          ID_FOLDER_NES: ${{ secrets.ID_FOLDER_NES }}
+          ID_FOLDER_SNES: ${{ secrets.ID_FOLDER_SNES }}
+          ID_FOLDER_64: ${{ secrets.ID_FOLDER_64 }}
+          ID_FOLDER_GAMECUBE: ${{ secrets.ID_FOLDER_GAMECUBE }}
+          ID_FOLDER_DS: ${{ secrets.ID_FOLDER_DS }}
+          ID_FOLDER_PSX: ${{ secrets.ID_FOLDER_PSX }}
+          ID_FOLDER_PS2: ${{ secrets.ID_FOLDER_PS2 }}
+          ID_FOLDER_PSP: ${{ secrets.ID_FOLDER_PSP }}
+          ID_FOLDER_3DS: ${{ secrets.ID_FOLDER_3DS }}
+          ID_FOLDER_DREAMCAST: ${{ secrets.ID_FOLDER_DREAMCAST }}
+          ID_FOLDER_WII: ${{ secrets.ID_FOLDER_WII }}
+          ID_FOLDER_SWITCH: ${{ secrets.ID_FOLDER_SWITCH }}
+          ID_FOLDER_GENESIS: ${{ secrets.ID_FOLDER_GENESIS }}
+          SAGIRI_TOKEN: ${{ secrets.SAGIRI_TOKEN }}
+          ASSET_URL: ${{ secrets.ASSET_URL }}
 
       - name: Clean Up Temporary Files
         run: |
