@@ -105,6 +105,8 @@ type Console {
     "Name of the console."
     name: String!
 
+    fullname: String!
+
     "When the console was created."
     created_at: DateTime
 
