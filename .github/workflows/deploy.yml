@@ -89,7 +89,7 @@ jobs:
           SAGIRI_TOKEN: ${{ secrets.SAGIRI_TOKEN }}
           ASSET_URL: ${{ secrets.ASSET_URL }}
         run: |
-          env | grep _ >> .env
+          printenv | grep _ | while IFS='=' read -r key value; do echo "$key='${value}'"; done >> .env
 
       # This step sets up Node.js environment.
       - name: Setup Node.js
