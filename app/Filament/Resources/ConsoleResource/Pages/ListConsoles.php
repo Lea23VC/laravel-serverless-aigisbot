@@ -10,7 +10,7 @@ class ListConsoles extends ListRecords
 {
     protected static string $resource = ConsoleResource::class;
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
             Actions\CreateAction::make(),

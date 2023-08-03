@@ -6,9 +6,9 @@ use App\Filament\Resources\ConsoleResource\Pages;
 use App\Filament\Resources\ConsoleResource\RelationManagers;
 use App\Models\Console;
 use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
+use Filament\Tables\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -17,7 +17,7 @@ class ConsoleResource extends Resource
 {
     protected static ?string $model = Console::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
