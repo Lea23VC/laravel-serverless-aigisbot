@@ -90,6 +90,8 @@ provider:
                     - s3:*
                   Resource: 
                     - "arn:aws:s3:::aigisbot-images/*"
+    
+
 package:
     # Files and directories to exclude from deployment
     patterns:
@@ -109,7 +111,10 @@ functions:
         runtime: php-81-fpm
         timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
         events:
-            - httpApi: '*'
+            - httpApi: 
+                path: '*'
+                method: ANY
+                cors: false
 
         
 
@@ -169,3 +174,4 @@ resources:
                 - "http://127.0.0.1:8000"
                 - "https://pt69uke176.execute-api.us-east-1.amazonaws.com"
                 - "https://d32n8agm3v8nrq.cloudfront.net"
+                - "https://roms.aigisbot.xyz"
