@@ -39,9 +39,9 @@ provider:
         MAIL_ENCRYPTION: ${ssm:/aigisbot/prod/MAIL_ENCRYPTION}
         MAIL_FROM_ADDRESS: ${ssm:/aigisbot/prod/MAIL_FROM_ADDRESS}
         MAIL_FROM_NAME: ${ssm:/aigisbot/prod/MAIL_FROM_NAME}
-        AWS_ACCESS_KEY_ID: ${ssm:/aigisbot/prod/AWS_ACCESS_KEY_ID}
-        AWS_SECRET_ACCESS_KEY: ${ssm:/aigisbot/prod/AWS_SECRET_ACCESS_KEY}
-        AWS_DEFAULT_REGION: ${ssm:/aigisbot/prod/AWS_DEFAULT_REGION}
+        # AWS_ACCESS_KEY_ID: ${ssm:/aigisbot/prod/AWS_ACCESS_KEY_ID}
+        # AWS_SECRET_ACCESS_KEY: ${ssm:/aigisbot/prod/AWS_SECRET_ACCESS_KEY}
+        # AWS_DEFAULT_REGION: ${ssm:/aigisbot/prod/AWS_DEFAULT_REGION}
         AWS_BUCKET: ${ssm:/aigisbot/prod/AWS_BUCKET}
         AWS_USE_PATH_STYLE_ENDPOINT: ${ssm:/aigisbot/prod/AWS_USE_PATH_STYLE_ENDPOINT}
         # PUSHER_APP_ID: ${ssm:/aigisbot/prod/PUSHER_APP_ID}
