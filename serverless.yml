@@ -59,7 +59,7 @@ provider:
         VITE_PUSHER_APP_CLUSTER: ${ssm:/aigisbot/prod/VITE_PUSHER_APP_CLUSTER}
         DISCORD_TOKEN: ${ssm:/aigisbot/prod/DISCORD_TOKEN}
         DISCORD_PUBLIC_KEY: ${ssm:/aigisbot/prod/DISCORD_PUBLIC_KEY}
-        GOOGLE_AUTH: ${ssm:/aigisbot/prod/GOOGLE_AUTH}
+        # GOOGLE_AUTH: ${ssm:/aigisbot/prod/GOOGLE_AUTH}
         ID_FOLDER_GBA: ${ssm:/aigisbot/prod/ID_FOLDER_GBA}
         ID_FOLDER_GBC: ${ssm:/aigisbot/prod/ID_FOLDER_GBC}
         ID_FOLDER_GB: ${ssm:/aigisbot/prod/ID_FOLDER_GB}
