@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Actions;
 use Filament\Forms\Components\FileUpload;
+use Filament\Tables\Columns\ImageColumn;
 
 class GameResource extends Resource
 {
@@ -54,6 +55,7 @@ class GameResource extends Resource
     {
         return $table
             ->columns([
+                ImageColumn::make('boxart')->square()->disk('s3')->visibility('private'),
                 Tables\Columns\TextColumn::make('console.fullname')
                     ->label('Console'),
                 Tables\Columns\TextColumn::make('name')->searchable()->sortable(),
