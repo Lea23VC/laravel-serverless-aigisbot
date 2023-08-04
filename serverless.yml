@@ -89,7 +89,7 @@ provider:
                   Action:
                     - s3:*
                   Resource: 
-                    Fn::GetAtt: [MyS3Bucket, Arn]
+                    - "arn:aws:s3:::aigisbot-images/*"
 package:
     # Files and directories to exclude from deployment
     patterns:
