@@ -82,6 +82,14 @@ provider:
         SECRET_NAME: ${ssm:/aigisbot/prod/SECRET_NAME}
         OWNER: ${ssm:/aigisbot/prod/OWNER}
         REPO_NAME: ${ssm:/aigisbot/prod/REPO_NAME}
+
+
+    iamRoleStatements:
+                - Effect: Allow
+                  Action:
+                    - s3:*
+                  Resource: 
+                    Fn::GetAtt: [MyS3Bucket, Arn]
 package:
     # Files and directories to exclude from deployment
     patterns:
@@ -90,6 +98,8 @@ package:
         - '!resources/assets/**'
         - '!storage/**'
         - '!tests/**'
+
+
 
 functions:
 
@@ -101,12 +111,7 @@ functions:
         events:
             - httpApi: '*'
 
-        iamRoleStatements:
-            - Effect: Allow
-              Action:
-                - s3:*
-              Resource: 
-                Fn::GetAtt: [MyS3Bucket, Arn]
+        
 
     # This function lets us run artisan commands in Lambda
     artisan:
@@ -118,12 +123,7 @@ functions:
         #    - schedule:
         #          rate: rate(1 minute)
         #          input: '"schedule:run"'
-        iamRoleStatements:
-            - Effect: Allow
-              Action:
-                - s3:*
-              Resource: 
-                Fn::GetAtt: [MyS3Bucket, Arn]
+        
 
 plugins:
     # We need to include the Bref plugin
