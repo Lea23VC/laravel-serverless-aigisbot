@@ -112,7 +112,6 @@ functions:
         events:
             - httpApi:
                 method: '*'
-                path: '{proxy+}'
                 cors: true
 
         
