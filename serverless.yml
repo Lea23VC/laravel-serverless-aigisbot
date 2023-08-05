@@ -114,6 +114,9 @@ functions:
                 method: '*'
                 path: /
                 cors: true
+                allowedOrigins:
+                    - 'http://roms.aigisbot.xyz'
+                    - "https://d32n8agm3v8nrq.cloudfront.net"
 
         
 
