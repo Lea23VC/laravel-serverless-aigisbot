@@ -17,11 +17,40 @@ use Filament\Actions;
 use Filament\Forms\Components\FileUpload;
 use Filament\Tables\Columns\ImageColumn;
 
+use Filament\Infolists;
+use Filament\Infolists\Infolist;
+use Filament\Infolists\Components\Section;
+use Filament\Infolists\Components\Split;
+
 class GameResource extends Resource
 {
     protected static ?string $model = Game::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        $infoSection = Section::make([
+            Infolists\Components\TextEntry::make('name')->size('lg'),
+            Infolists\Components\TextEntry::make('console.fullname')->label("Console"),
+            Infolists\Components\TextEntry::make('url')->label('URL')->url(fn (Game $record): string => $record->url)->openUrlInNewTab(),
+        ])->grow();
+
+        $mediaSection =
+            Section::make([
+                Infolists\Components\ImageEntry::make('boxart')->disk('s3')->visibility('private')->columnSpanFull()->width('500px')->height('auto'),
+            ]);
+
+        return $infolist
+            ->schema([
+                Split::make([
+                    $infoSection,
+                    $mediaSection
+                ])->from('md')
+
+
+            ]);
+    }
 
 
     public static function form(Form $form): Form
@@ -57,7 +86,7 @@ class GameResource extends Resource
             ->columns([
                 ImageColumn::make('boxart')->square()->disk('s3')->visibility('private'),
                 Tables\Columns\TextColumn::make('console.fullname')
-                    ->label('Console'),
+                    ->label('Console')->sortable(),
                 Tables\Columns\TextColumn::make('name')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('url')->label('URL'),
                 Tables\Columns\TextColumn::make('password')->label('Password'),

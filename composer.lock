@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8500bbc54fab9f0b7173f973e2adaae5",
+    "content-hash": "eacccaae821b3aba0dbc282faa4f32e9",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -9537,16 +9537,16 @@
         },
         {
             "name": "filament/upgrade",
-            "version": "v3.0.0",
+            "version": "v3.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/upgrade.git",
-                "reference": "3bef9eea122fe7c2b40cf0225dc15314be52503c"
+                "reference": "aa29d9ddcd39018eb9362cf6ae994d20e57a1924"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filamentphp/upgrade/zipball/3bef9eea122fe7c2b40cf0225dc15314be52503c",
-                "reference": "3bef9eea122fe7c2b40cf0225dc15314be52503c",
+                "url": "https://api.github.com/repos/filamentphp/upgrade/zipball/aa29d9ddcd39018eb9362cf6ae994d20e57a1924",
+                "reference": "aa29d9ddcd39018eb9362cf6ae994d20e57a1924",
                 "shasum": ""
             },
             "require": {
@@ -9573,7 +9573,7 @@
                 "issues": "https://github.com/filamentphp/filament/issues",
                 "source": "https://github.com/filamentphp/filament"
             },
-            "time": "2023-08-01T12:41:14+00:00"
+            "time": "2023-08-02T14:42:18+00:00"
         },
         {
             "name": "filp/whoops",
