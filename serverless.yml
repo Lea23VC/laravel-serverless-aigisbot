@@ -1,7 +1,6 @@
 service: serverless-aigisbot
 
 provider:
-    stage: prod
     name: aws
     # The AWS region in which to deploy (us-east-1 is the default)
     region: us-east-1
@@ -110,9 +109,8 @@ functions:
         runtime: php-81-fpm
         timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
         events:
-            - httpApi:
-                method: '*'
-                path: /
+            - httpApi: '*'
+
         
 
     # This function lets us run artisan commands in Lambda
@@ -131,7 +129,6 @@ plugins:
     # We need to include the Bref plugin
     - ./vendor/bref/bref
     - serverless-lift
-    # - serverless-domain-manager
 
 constructs:
     website:
@@ -154,20 +151,6 @@ constructs:
 
 resources:
   Resources:
-    MyApiGateway:
-        Type: AWS::ApiGatewayV2::Api
-        Properties:
-          Name: my-api
-          ProtocolType: HTTP
-          CorsConfiguration:
-            AllowHeaders:
-              - '*'
-            AllowMethods:
-              - '*'
-            AllowOrigins:
-              - 'http://roms.aigisbot.xyz'
-              - 'https://d32n8agm3v8nrq.cloudfront.net'
-              
     MyS3Bucket:
       Type: AWS::S3::Bucket
       Properties:
@@ -186,13 +169,3 @@ resources:
                 - "http://127.0.0.1:8000"
                 - "https://pt69uke176.execute-api.us-east-1.amazonaws.com"
                 - "https://d32n8agm3v8nrq.cloudfront.net"
-                - "https://roms.aigisbot.xyz"
-
-
-
-# custom:
-#   customDomain:
-#     apiType: rest
-#     domainName: roms.aigisbot.xyz
-#     basePath: ''
-#     stage: ${self:provider.stage}
