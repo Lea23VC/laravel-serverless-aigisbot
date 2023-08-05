@@ -35,7 +35,8 @@ class RegionSeeder extends Seeder
         foreach ($regions as $region) {
             // Use firstOrCreate to prevent duplicates based on the 'name' attribute
             Region::firstOrCreate(['name' => $region['name']], [
-                'code' => isset($region['code'])
+                'code' => $region['code']
+
             ]);
         }
     }

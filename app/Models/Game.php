@@ -29,4 +29,9 @@ class Game extends Model
     {
         return $this->belongsTo(Console::class);
     }
+
+    public function region(): BelongsTo
+    {
+        return $this->belongsTo(Region::class);
+    }
 }

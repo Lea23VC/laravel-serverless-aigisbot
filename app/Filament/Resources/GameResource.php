@@ -33,7 +33,8 @@ class GameResource extends Resource
         $infoSection = Section::make([
             Infolists\Components\TextEntry::make('name')->size('lg'),
             Infolists\Components\TextEntry::make('console.fullname')->label("Console"),
-            Infolists\Components\TextEntry::make('url')->label('URL')->url(fn (Game $record): string => $record->url)->openUrlInNewTab(),
+            Infolists\Components\TextEntry::make('url')->label('URL')->limit(50)
+                ->url(fn (Game $record): string => $record->url)->openUrlInNewTab(),
         ])->grow();
 
         $mediaSection =
@@ -45,11 +46,9 @@ class GameResource extends Resource
             ->schema([
                 Split::make([
                     $infoSection,
-                    $mediaSection
-                ])->from('md')
-
-
-            ]);
+                    $mediaSection,
+                ])->from('md'),
+            ])->columns(1);
     }
 
 
@@ -66,6 +65,7 @@ class GameResource extends Resource
                 Forms\Components\TextInput::make('url')->url()
                     ->required()
                     ->maxLength(255),
+                Forms\Components\Select::make('region_id')->relationship('region', 'code'),
                 Forms\Components\TextInput::make('password')
                     ->maxLength(255),
                 FileUpload::make('boxart')
@@ -89,6 +89,7 @@ class GameResource extends Resource
                     ->label('Console')->sortable(),
                 Tables\Columns\TextColumn::make('name')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('url')->label('URL'),
+                Tables\Columns\TextColumn::make('region.code')->label('Region'),
                 Tables\Columns\TextColumn::make('password')->label('Password'),
                 Tables\Columns\TextColumn::make('release_date')
                     ->date()->toggleable(isToggledHiddenByDefault: true),
