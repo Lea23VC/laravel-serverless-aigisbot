@@ -112,6 +112,7 @@ functions:
         events:
             - httpApi:
                 method: '*'
+                path: /
                 cors: true
 
         
