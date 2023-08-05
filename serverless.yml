@@ -90,8 +90,6 @@ provider:
                     - s3:*
                   Resource: 
                     - "arn:aws:s3:::aigisbot-images/*"
-    
-
 package:
     # Files and directories to exclude from deployment
     patterns:
@@ -111,10 +109,7 @@ functions:
         runtime: php-81-fpm
         timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
         events:
-            - httpApi:
-                path: /
-                method: ANY
-                cors: true
+            - httpApi: '*'
 
         
 
@@ -134,6 +129,7 @@ plugins:
     # We need to include the Bref plugin
     - ./vendor/bref/bref
     - serverless-lift
+    - serverless-domain-manager
 
 constructs:
     website:
@@ -175,3 +171,12 @@ resources:
                 - "https://pt69uke176.execute-api.us-east-1.amazonaws.com"
                 - "https://d32n8agm3v8nrq.cloudfront.net"
                 - "https://roms.aigisbot.xyz"
+
+
+
+custom:
+  customDomain:
+    domainName: roms.aigisbot.xyz
+    basePath: ''
+    stage: ${self:provider.stage}
+    createRoute53Record: true
