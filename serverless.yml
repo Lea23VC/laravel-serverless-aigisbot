@@ -1,6 +1,7 @@
 service: serverless-aigisbot
 
 provider:
+    stage: prod
     name: aws
     # The AWS region in which to deploy (us-east-1 is the default)
     region: us-east-1
@@ -178,3 +179,4 @@ custom:
   customDomain:
     domainName: roms.aigisbot.xyz
     basePath: ''
+    stage: ${self:provider.stage}
