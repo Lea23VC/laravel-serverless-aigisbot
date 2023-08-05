@@ -110,7 +110,10 @@ functions:
         runtime: php-81-fpm
         timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
         events:
-            - httpApi: '*'
+            - http:
+                method: ANY
+                path: '{proxy+}'
+                cors: true
 
         
 
@@ -175,9 +178,9 @@ resources:
 
 
 
-custom:
-  customDomain:
-    apiType: rest
-    domainName: roms.aigisbot.xyz
-    basePath: ''
-    stage: ${self:provider.stage}
+# custom:
+#   customDomain:
+#     apiType: rest
+#     domainName: roms.aigisbot.xyz
+#     basePath: ''
+#     stage: ${self:provider.stage}
