@@ -178,4 +178,3 @@ custom:
   customDomain:
     domainName: roms.aigisbot.xyz
     basePath: ''
-    stage: ${self:provider.stage}
