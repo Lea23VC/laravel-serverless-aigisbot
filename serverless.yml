@@ -179,4 +179,3 @@ custom:
     domainName: roms.aigisbot.xyz
     basePath: ''
     stage: ${self:provider.stage}
-    createRoute53Record: true
