@@ -110,8 +110,8 @@ functions:
         runtime: php-81-fpm
         timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
         events:
-            - http:
-                method: ANY
+            - httpApi:
+                method: '*'
                 path: '{proxy+}'
                 cors: true
 
