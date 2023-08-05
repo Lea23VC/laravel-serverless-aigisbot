@@ -177,7 +177,7 @@ resources:
 
 custom:
   customDomain:
-    apiType: http
+    apiType: rest
     domainName: roms.aigisbot.xyz
     basePath: ''
     stage: ${self:provider.stage}
