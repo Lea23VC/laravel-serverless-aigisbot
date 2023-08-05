@@ -113,11 +113,6 @@ functions:
             - httpApi:
                 method: '*'
                 path: /
-                cors: true
-                allowedOrigins:
-                    - 'http://roms.aigisbot.xyz'
-                    - "https://d32n8agm3v8nrq.cloudfront.net"
-
         
 
     # This function lets us run artisan commands in Lambda
@@ -159,6 +154,20 @@ constructs:
 
 resources:
   Resources:
+    MyApiGateway:
+        Type: AWS::ApiGatewayV2::Api
+        Properties:
+          Name: my-api
+          ProtocolType: HTTP
+          CorsConfiguration:
+            AllowHeaders:
+              - '*'
+            AllowMethods:
+              - '*'
+            AllowOrigins:
+              - 'http://roms.aigisbot.xyz'
+              - 'https://d32n8agm3v8nrq.cloudfront.net'
+              
     MyS3Bucket:
       Type: AWS::S3::Bucket
       Properties:
