@@ -41,6 +41,22 @@ Games in the games' dashboard can be filtered by consoles, and search it by name
 
 ![Games' dashboard](docs/filament/games_dashboard.png)
 
+Games can be added, deleted and edited with some extra info, like region and even boxart.
+
+![Alt text](docs/filament/games_view.png)
+
+
+## GraphQL API
+
+Games can be retrieved using GraphQL API, but users need to be authenticated. The authentication is using Sanctum. The current endpoint is: https://roms.aigisbot.xyz/graphql
+
+- Queries:
+  - games: get list of games by name (TODO: add more filters) 
+
+- Mutations:
+  - Login: authenticate the user, return the user's info a its authorization token.
+  - Logout: logout user and invalidate their current token.
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
