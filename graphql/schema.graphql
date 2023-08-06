@@ -39,5 +39,18 @@ type Query {
     games(
         "Filters by name. Accepts SQL LIKE wildcards `%` and `_`."
         name: String @like
-    ): [Game!]! @paginate(defaultCount: 10)
+    ): [Game!]! @paginate(defaultCount: 10) @guard
+}
+
+type Mutation {
+    "Log in to a new session and get the user."
+    login(email: String!, password: String!): LoginResponse!
+
+    "Log out from the current session, showing the user one last time."
+    logout: User @guard
+}
+
+type LoginResponse {
+    user: User!
+    token: String!
 }
