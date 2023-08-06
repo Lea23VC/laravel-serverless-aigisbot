@@ -7,6 +7,40 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+# Aigisbot
+
+Serverless Discord bot that search for game roms using folder IDs from Google Drive, using API Rest requests from Discord channels, and Laravel in-built ORM Eloquent to find them.
+
+Currently hosted in Lambda using Bref to deploy it to AWS.
+
+![Slash commands](https://i.imgur.com/gX8cPCd.png "Slash commands")
+
+## Available slash commands
+
+- nes
+- snes
+- 64
+- gamecube
+- wii
+- switch
+- genesis
+- dreamcast
+- psx
+- ps2
+- ps3
+- gb
+- gbc
+- gba
+- ds
+- 3ds
+
+
+## Filament Dashboard
+
+Games in the games' dashboard can be filtered by consoles, and search it by name. They can also be ordered by name.
+
+![Games' dashboard](docs/filament/games_dashboard.png)
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
