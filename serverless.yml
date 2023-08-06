@@ -82,6 +82,8 @@ provider:
         SECRET_NAME: ${ssm:/aigisbot/prod/SECRET_NAME}
         OWNER: ${ssm:/aigisbot/prod/OWNER}
         REPO_NAME: ${ssm:/aigisbot/prod/REPO_NAME}
+        SESSION_DOMAIN: ${ssm:/aigisbot/prod/SESSION_DOMAIN}
+        SANCTUM_STATEFUL_DOMAINS: ${ssm:/aigisbot/prod/SANCTUM_STATEFUL_DOMAINS}
 
 
     iamRoleStatements:
