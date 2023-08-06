@@ -9,9 +9,20 @@
 
 # Aigisbot
 
-Serverless Discord bot that search for game roms using folder IDs from Google Drive, using API Rest requests from Discord channels, and Laravel in-built ORM Eloquent to find them.
+Welcome to the documentation for our Serverless Discord bot designed to search for game ROMs using Laravel's powerful ORM, Eloquent. This bot is a part of an ongoing effort to provide a seamless way to access game ROMs from an extensive MySQL database of games, replacing the previous method of using Google Drive folders.
 
-Currently hosted in Lambda using Bref to deploy it to AWS.
+**Features**
+- **Serverless Architecture**: The bot is hosted on AWS Lambda, leveraging the Bref framework to ensure scalability and optimal resource allocation.
+
+- **Discord Integration**: Discord users can effortlessly search for and retrieve game ROMs within their servers through the bot's integration.
+
+- **Laravel Eloquent ORM**: The bot employs Laravel's powerful Eloquent ORM to interact with the MySQL database. This facilitates streamlined management of game data, ensuring fast and accurate search results.
+
+- **Game Management Dashboard**: With the integration of Filament, a robust admin panel for Laravel, users can conveniently add, edit, and delete game entries through a user-friendly web interface.
+
+- **GraphQL API with Lighthouse**: The system includes a GraphQL API that enables users to retrieve game entries. Powered by Lighthouse, this API simplifies the process of searching for games..
+
+- **Comprehensive Game Database**: The MySQL database houses an extensive collection of game ROMs, providing users with access to a diverse range of games.
 
 ![Slash commands](https://i.imgur.com/gX8cPCd.png "Slash commands")
 
@@ -37,27 +48,44 @@ Currently hosted in Lambda using Bref to deploy it to AWS.
 
 ## Filament Dashboard
 
-Games in the games' dashboard can be filtered by consoles, and search it by name. They can also be ordered by name.
+The Serverless Discord bot introduces a robust game management dashboard, seamlessly integrated with Filament, a feature-rich admin panel tailored for Laravel applications. This dashboard empowers users to effortlessly oversee their game collections, facilitating intuitive tasks such as adding, editing, and removing game entries. Filament's capabilities enhance control and streamline the management of game libraries.
+
+### Key Features
+- **Filtering and Searching**: Users can conveniently filter games by consoles and perform name-based searches, simplifying the process of locating specific titles.
+
+- **Sorting Functionality**: The dashboard offers a straightforward means of arranging game entries alphabetically by name.
+
+- **Game Preview**: A well-structured dashboard interface provides users with an informative overview of their game collection.
+
+### Dashboard Screenshots
+
 
 ![Games' dashboard](docs/filament/games_dashboard.png)
 
 ![Alt text](docs/filament/games_view.png)
 
-Games can be added, deleted and edited with some extra info, like region and even boxart.
-
+Users can edit game entries, including additional details like region and box art.
 
 ![Alt text](docs/filament/games_edit.png)
 
+### Usage
+1. Users log into the Filament-powered dashboard using their credentials.
+2. The "Games" section grants access to the user's game collection.
+3. The dashboard's filtering, searching, and sorting functionalities help users quickly pinpoint specific games.
+4. Users can seamlessly perform actions like adding, editing, or deleting game entries, while providing supplemental data such as region and box art.
+
 ## GraphQL API
 
-Games can be retrieved using GraphQL API, but users need to be authenticated. The authentication is using Sanctum. The current endpoint is: https://roms.aigisbot.xyz/graphql
+The Discord bot introduces a GraphQL API tailored for accessing game data, creating a seamless experience for retrieving valuable information from the vast game collection. However, user authentication is a prerequisite to utilize this feature. The authentication mechanism is established using Sanctum, ensuring secure access to the API. The API endpoint for these operations is currently available at: https://roms.aigisbot.xyz/graphql.
 
-- Queries:
-  - games: get list of games by name (TODO: add more filters) 
+### Queries
 
-- Mutations:
-  - Login: authenticate the user, return the user's info a its authorization token.
-  - Logout: logout user and invalidate their current token.
+- **Games**: Users can retrieve a list of games by name, offering a preliminary means of exploring the extensive game catalog. (Note: Additional filters will be integrated in the future to enhance search capabilities.)
+
+### Mutations:
+- **Login**: Users can authenticate themselves via the "Login" mutation, providing necessary credentials. This process yields the user's pertinent details along with an authorization token.
+
+- **Logout**: When necessary, users can employ the "Logout" mutation to log out of their account, effectively invalidating their current authorization token.
 
 ## About Laravel
 
