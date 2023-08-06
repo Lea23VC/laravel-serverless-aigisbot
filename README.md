@@ -41,10 +41,12 @@ Games in the games' dashboard can be filtered by consoles, and search it by name
 
 ![Games' dashboard](docs/filament/games_dashboard.png)
 
-Games can be added, deleted and edited with some extra info, like region and even boxart.
-
 ![Alt text](docs/filament/games_view.png)
 
+Games can be added, deleted and edited with some extra info, like region and even boxart.
+
+
+![Alt text](docs/filament/games_edit.png)
 
 ## GraphQL API
 
