@@ -25,6 +25,9 @@ final class Verify
 
         $token = $user->createToken('token-name')->plainTextToken;
 
-        return ['token' => $token];
+        return [
+            'user' => $user,
+            'token' => $token,
+        ];
     }
 }

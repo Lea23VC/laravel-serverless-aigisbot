@@ -50,14 +50,10 @@ type Mutation {
     logout: User @guard
 
     "Verify token and return a new one."
-    verify: TokenResponse @guard
+    verify: LoginResponse @guard
 }
 
 type LoginResponse {
     user: User!
-    token: String!
-}
-
-type TokenResponse {
     token: String!
 }
