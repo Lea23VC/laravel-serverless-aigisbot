@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Arr;
 
 final class Logout
 {
@@ -17,7 +18,7 @@ final class Logout
     {
         // Plain Laravel: Auth::guard()
         // Laravel Sanctum: Auth::guard(config('sanctum.guard', 'web'))
-        $guard = Auth::guard();
+        $guard = Auth::guard(config('sanctum.guard', 'web'));
 
         $user = $guard->user();
         $guard->logout();
