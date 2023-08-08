@@ -130,6 +130,11 @@ functions:
         #          rate: rate(1 minute)
         #          input: '"schedule:run"'
         
+    console:
+        handler: bin/console
+        runtime: php-81
+        layers:
+            - ${bref-extra:gd-php-81}
 
 plugins:
     # We need to include the Bref plugin
