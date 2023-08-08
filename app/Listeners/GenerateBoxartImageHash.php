@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use App\Jobs\GenerateBoxartImageHashJob;
 
 class GenerateBoxartImageHash
 {
@@ -24,8 +25,7 @@ class GenerateBoxartImageHash
     {
         //
         $boxart = $event->boxart;
-        $boxart->update([
-            'image_hash' => 'generated_hash_value', // Replace with the actual generated hash
-        ]);
+        // Dispatch the job to generate the image hash
+        GenerateBoxartImageHashJob::dispatch($boxart);
     }
 }
