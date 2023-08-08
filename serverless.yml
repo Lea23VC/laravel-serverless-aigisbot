@@ -154,6 +154,8 @@ constructs:
             handler: Bref\LaravelBridge\Queue\QueueHandler
             runtime: php-81
             timeout: 60 # seconds
+            layers:
+            - ${bref-extra:gd-php-81}
 
 
 resources:
