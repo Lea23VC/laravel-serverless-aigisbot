@@ -33,7 +33,7 @@ class GenerateBoxartImageHashJob implements ShouldQueue
     public function handle()
     {
         $disk = Storage::disk('s3');
-        $imagePath = 'games-boxarts/' . $this->boxart->image; // Adjust the path if needed
+        $imagePath = $this->boxart->image; // Adjust the path if needed
 
         if ($disk->exists($imagePath)) {
             // Load the original image
