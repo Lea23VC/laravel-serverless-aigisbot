@@ -113,7 +113,7 @@ functions:
         events:
             - httpApi: '*'
         layers:
-            - ${bref-extra:imagick-php-81}
+            - ${bref-extra:gd-php-81}
 
         
 
@@ -123,7 +123,7 @@ functions:
         runtime: php-81-console
         timeout: 720 # in seconds
         layers:
-            - ${bref-extra:imagick-php-81}
+            - ${bref-extra:gd-php-81}
         # Uncomment to also run the scheduler every minute
         #events:
         #    - schedule:

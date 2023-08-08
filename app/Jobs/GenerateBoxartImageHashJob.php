@@ -37,7 +37,6 @@ class GenerateBoxartImageHashJob implements ShouldQueue
 
         if ($disk->exists($imagePath)) {
             // Load the original image
-            Image::configure(['driver' => 'imagick']);
 
             $originalImage = Image::make($disk->get($imagePath));
 
