@@ -68,10 +68,16 @@ class GameResource extends Resource
                 Forms\Components\Select::make('region_id')->relationship('region', 'code'),
                 Forms\Components\TextInput::make('password')
                     ->maxLength(255),
-                FileUpload::make('boxart')
-                    ->disk('s3')
-                    ->directory('games-boxarts')->image()
-                    ->visibility('private'),
+
+                Forms\Components\Section::make("Boxart")->relationship('boxart')
+                    ->schema([
+                        FileUpload::make('image')
+                            ->disk('s3')
+                            ->directory('games-boxarts')->image()
+                            ->visibility('private'),
+                    ]),
+
+
                 // Forms\Components\TextInput::make('boxart')
                 //     ->maxLength(255),
                 Forms\Components\DatePicker::make('release_date'),
@@ -84,7 +90,7 @@ class GameResource extends Resource
     {
         return $table
             ->columns([
-                ImageColumn::make('boxart')->square()->disk('s3')->visibility('private'),
+                ImageColumn::make('boxart.image')->square()->disk('s3')->visibility('private'),
                 Tables\Columns\TextColumn::make('console.fullname')
                     ->label('Console')->sortable(),
                 Tables\Columns\TextColumn::make('name')->searchable()->sortable(),

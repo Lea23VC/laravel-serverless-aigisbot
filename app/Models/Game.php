@@ -12,7 +12,6 @@ class Game extends Model
     protected $fillable = [
         'name',
         'url',
-        'boxart',
         'password',
         'release_date',
         'console_id',
@@ -33,5 +32,10 @@ class Game extends Model
     public function region(): BelongsTo
     {
         return $this->belongsTo(Region::class);
+    }
+
+    public function boxart(): BelongsTo
+    {
+        return $this->belongsTo(Boxart::class);
     }
 }

@@ -13,16 +13,9 @@ return new class extends Migration
     {
         Schema::create('boxarts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('game_id');
             $table->string('image');
             $table->string('image_hash')->nullable();
             $table->timestamps();
-
-            // Create a foreign key constraint
-            $table->foreign('game_id')
-                ->references('id')
-                ->on('games')
-                ->onDelete('cascade');
         });
     }
 
