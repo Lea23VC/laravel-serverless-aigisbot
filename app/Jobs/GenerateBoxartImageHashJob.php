@@ -11,6 +11,7 @@ use Illuminate\Queue\SerializesModels;
 use App\Models\Boxart;
 use Illuminate\Support\Facades\Storage;
 
+use Intervention\Image\ImageManagerStatic as Image;
 
 class GenerateBoxartImageHashJob implements ShouldQueue
 {
@@ -36,6 +37,8 @@ class GenerateBoxartImageHashJob implements ShouldQueue
 
         if ($disk->exists($imagePath)) {
             // Load the original image
+            Image::configure(['driver' => 'imagick']);
+
             $originalImage = Image::make($disk->get($imagePath));
 
             // Create a blurred placeholder image
