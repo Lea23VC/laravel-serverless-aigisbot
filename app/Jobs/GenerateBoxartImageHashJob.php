@@ -33,17 +33,16 @@ class GenerateBoxartImageHashJob implements ShouldQueue
     public function handle()
     {
         $disk = Storage::disk('s3');
-        $imagePath = $this->boxart->image; // Adjust the path if needed
+        $imagePath = 'games-boxarts/' . $this->boxart->image; // Adjust the path if needed
 
         if ($disk->exists($imagePath)) {
             // Load the original image
-
             $originalImage = Image::make($disk->get($imagePath));
 
-            // Create a blurred placeholder image
-            $blurredImage = $originalImage->blur(10);
+            // Create a smaller and lower quality blurred placeholder image
+            $blurredImage = $originalImage->resize(200, 200)->blur(5)->encode('jpg', 50);
 
-            // Encode the blurred image to base64
+            // Encode the resized and lower quality blurred image to base64
             $base64BlurredImage = $blurredImage->encode('data-url')->encoded;
 
             $this->boxart->update([

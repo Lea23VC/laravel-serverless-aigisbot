@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('boxarts', function (Blueprint $table) {
             $table->id();
             $table->string('image');
-            $table->string('image_hash')->nullable();
+            $table->text('image_hash')->nullable();
             $table->timestamps();
         });
     }
