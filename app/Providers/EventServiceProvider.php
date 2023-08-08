@@ -6,6 +6,10 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use App\Events\BoxartImageUploaded;
+use App\Listeners\GenerateBoxartImageHash;
+use App\Models\Boxart;
+use App\Observers\BoxartObserver;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -18,6 +22,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        BoxartImageUploaded::class => [
+            GenerateBoxartImageHash::class,
+        ],
     ];
 
     /**
@@ -26,6 +33,7 @@ class EventServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+        Boxart::observe(BoxartObserver::class);
     }
 
     /**
