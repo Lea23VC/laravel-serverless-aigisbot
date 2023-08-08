@@ -11,8 +11,6 @@ use Illuminate\Queue\SerializesModels;
 use App\Models\Boxart;
 use Illuminate\Support\Facades\Storage;
 
-use Intervention\Image\ImageManagerStatic as Image;
-
 
 class GenerateBoxartImageHashJob implements ShouldQueue
 {

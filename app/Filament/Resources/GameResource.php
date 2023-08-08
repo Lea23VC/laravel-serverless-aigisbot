@@ -39,7 +39,7 @@ class GameResource extends Resource
 
         $mediaSection =
             Section::make([
-                Infolists\Components\ImageEntry::make('boxart')->disk('s3')->visibility('private')->columnSpanFull()->width("100%")->height('auto')
+                Infolists\Components\ImageEntry::make('boxart.image')->disk('s3')->visibility('private')->columnSpanFull()->width("100%")->height('auto')
             ]);
 
         return $infolist
