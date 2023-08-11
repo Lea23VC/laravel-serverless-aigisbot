@@ -8,9 +8,6 @@ type Game {
     "URL of the game."
     url: String!
 
-    "URL of the game's box art."
-    boxart: String
-
     "Password for the game (if applicable)."
     password: String
 
@@ -39,5 +36,5 @@ type Game {
     updated_at: DateTime
 
     "Console associated with the game."
-    console: Console!
+    console: Console! @belongsTo
 }

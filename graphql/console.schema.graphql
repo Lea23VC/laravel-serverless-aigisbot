@@ -14,5 +14,5 @@ type Console {
     updated_at: DateTime
 
     "Games associated with the console."
-    games: [Game!]!
+    games: [Game!]! @hasMany
 }

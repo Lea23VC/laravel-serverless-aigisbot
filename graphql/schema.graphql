@@ -40,6 +40,14 @@ type Query {
         "Filters by name. Accepts SQL LIKE wildcards `%` and `_`."
         name: String @like
     ): [Game!]! @paginate(defaultCount: 10) @guard
+
+    consoles(
+        "Filters by name. Accepts SQL LIKE wildcards `%` and `_`."
+        name: String @like
+        fullname: String @like
+    ): [Console!]! @all @guard
+
+    console("Search by primary key." fullname: String! @like): Console @first
 }
 
 type Mutation {
@@ -56,4 +64,8 @@ type Mutation {
 type LoginResponse {
     user: User!
     token: String!
+}
+
+enum GameColumn {
+    NAME @enum(value: "name")
 }
