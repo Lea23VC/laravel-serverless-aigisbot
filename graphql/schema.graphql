@@ -7,6 +7,9 @@
 # Import User type definitions
 #import ./user.schema.graphql
 
+# Import Company type definitions
+#import ./company.schema.graphql
+
 "A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
 scalar DateTime
     @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
@@ -48,6 +51,11 @@ type Query {
     ): [Console!]! @all @guard
 
     console("Search by primary key." fullname: String! @like): Console @first
+
+    companies(
+        "Filters by name. Accepts SQL LIKE wildcards `%` and `_`."
+        name: String @like
+    ): [Company!]! @all @guard
 }
 
 type Mutation {

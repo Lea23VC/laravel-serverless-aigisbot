@@ -29,6 +29,7 @@ class ConsoleResource extends Resource
                 Forms\Components\TextInput::make('fullname')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\Select::make('company_id')->relationship('company', 'name')->required(),
                 Forms\Components\Toggle::make('nasos')
                     ->required(),
             ]);

@@ -114,6 +114,8 @@ class GameResource extends Resource
                 //
                 SelectFilter::make('console')->relationship('console', 'fullname')->multiple()
 
+            ])->headerActions([
+                Tables\Actions\CreateAction::make(),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
