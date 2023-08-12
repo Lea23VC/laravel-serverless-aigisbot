@@ -160,6 +160,7 @@ return [
          * Package Service Providers...
          */
         \Nuwave\Lighthouse\WhereConditions\WhereConditionsServiceProvider::class,
+        Spatie\EloquentSortable\EloquentSortableServiceProvider::class,
 
         /*
          * Application Service Providers...

@@ -27,7 +27,8 @@
         "mll-lab/graphql-php-scalars": "^6.2",
         "mll-lab/laravel-graphiql": "^3.1",
         "nuwave/lighthouse": "*",
-        "paragonie/sodium_compat": "^1.20"
+        "paragonie/sodium_compat": "^1.20",
+        "spatie/eloquent-sortable": "^4.0"
     },
     "require-dev": {
         "doctrine/dbal": "^3.6",

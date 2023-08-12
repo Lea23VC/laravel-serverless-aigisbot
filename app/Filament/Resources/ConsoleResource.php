@@ -43,11 +43,15 @@ class ConsoleResource extends Resource
                 Tables\Columns\TextColumn::make('fullname')->label('Name'),
                 Tables\Columns\TextColumn::make('name')->label('ID'),
                 Tables\Columns\TextColumn::make('games_count')->counts('games')->label('Number of games'),
-            ])
+            ])->defaultSort('order_column', 'asc')
             ->filters([
                 //
             ])
             ->actions([
+                Tables\Actions\Action::make('up')
+                    ->action(fn (Console $record) => $record->moveOrderUp()),
+                Tables\Actions\Action::make('down')
+                    ->action(fn (Console $record) => $record->moveOrderDown()),
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
@@ -62,6 +66,8 @@ class ConsoleResource extends Resource
             RelationManagers\GamesRelationManager::class,
         ];
     }
+
+
 
     public static function getPages(): array
     {
