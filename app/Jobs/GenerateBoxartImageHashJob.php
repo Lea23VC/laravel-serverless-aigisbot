@@ -38,15 +38,19 @@ class GenerateBoxartImageHashJob implements ShouldQueue
         if ($disk->exists($imagePath)) {
             // Load the original image
             $originalImage = Image::make($disk->get($imagePath));
+            $width = $originalImage->width();
+            $height = $originalImage->height();
 
             // Create a smaller and lower quality blurred placeholder image
-            $blurredImage = $originalImage->resize(200, 200)->blur(5)->encode('jpg', 50);
+            $blurredImage = $originalImage->resize(32, 32)->blur(80)->encode('jpg', 50);
 
             // Encode the resized and lower quality blurred image to base64
             $base64BlurredImage = $blurredImage->encode('data-url')->encoded;
 
             $this->boxart->update([
                 'image_hash' => $base64BlurredImage,
+                'width' => $width,
+                'height' => $height,
             ]);
         }
     }

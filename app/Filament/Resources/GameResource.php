@@ -54,6 +54,8 @@ class GameResource extends Resource
 
     public static function form(Form $form): Form
     {
+        $consoleId = $form->getRecord()->console->name;
+
         return $form
             ->schema([
                 Forms\Components\Select::make('console_id')
@@ -71,9 +73,9 @@ class GameResource extends Resource
 
                 Forms\Components\Section::make("Boxart")->relationship('boxart')
                     ->schema([
-                        FileUpload::make('image')
+                        FileUpload::make('image')->label('games-boxarts/' . $consoleId)
                             ->disk('s3')
-                            ->directory('games-boxarts')->image()
+                            ->directory('games-boxarts/' . $consoleId)->image()
                             ->visibility('private'),
                     ]),
 
@@ -112,7 +114,7 @@ class GameResource extends Resource
             ])
             ->filters([
                 //
-                SelectFilter::make('console')->relationship('console', 'fullname')->multiple()
+                SelectFilter::make('console')->relationship('console', 'fullname')->multiple()->preload()
 
             ])->headerActions([
                 Tables\Actions\CreateAction::make(),
