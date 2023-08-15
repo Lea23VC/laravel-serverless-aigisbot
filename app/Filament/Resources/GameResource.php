@@ -114,7 +114,8 @@ class GameResource extends Resource
             ])
             ->filters([
                 //
-                SelectFilter::make('console')->relationship('console', 'fullname')->multiple()->preload()
+                SelectFilter::make('console')->relationship('console', 'fullname')->multiple()->preload(),
+                SelectFilter::make('region')->relationship('region', 'code')->multiple()->preload(),
 
             ])->headerActions([
                 Tables\Actions\CreateAction::make(),
