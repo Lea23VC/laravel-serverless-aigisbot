@@ -9,5 +9,5 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Boxart extends Model
 {
     use HasFactory;
-    protected $fillable = ['game_id', 'image', 'image_hash'];
+    protected $fillable = ['game_id', 'image', 'image_hash', 'width', 'height'];
 }
