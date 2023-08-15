@@ -48,9 +48,9 @@ class ConsoleResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\Action::make('up')
+                Tables\Actions\Action::make('up')->icon('heroicon-o-chevron-up')
                     ->action(fn (Console $record) => $record->moveOrderUp()),
-                Tables\Actions\Action::make('down')
+                Tables\Actions\Action::make('down')->icon('heroicon-o-chevron-down')
                     ->action(fn (Console $record) => $record->moveOrderDown()),
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
