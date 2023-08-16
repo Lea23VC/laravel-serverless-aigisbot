@@ -13,6 +13,7 @@ use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\Filter;
 use Filament\Actions;
 use Filament\Forms\Components\FileUpload;
 use Filament\Tables\Columns\ImageColumn;
@@ -116,6 +117,8 @@ class GameResource extends Resource
                 //
                 SelectFilter::make('console')->relationship('console', 'fullname')->multiple()->preload(),
                 SelectFilter::make('region')->relationship('region', 'code')->multiple()->preload(),
+                Filter::make('boxart')->toggle()->query(fn (Builder $query): Builder => $query->whereNotNull('boxart_id'))->default(true)
+
 
             ])->headerActions([
                 Tables\Actions\CreateAction::make(),

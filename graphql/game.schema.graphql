@@ -37,4 +37,7 @@ type Game {
 
     "Console associated with the game."
     console: Console! @belongsTo
+
+    "Boxart associated with the game."
+    boxart: Boxart @belongsTo
 }

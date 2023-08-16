@@ -1,0 +1,19 @@
+type Boxart {
+    "Unique primary key for the boxart"
+    id: ID!
+
+    "Path to the boxart image"
+    image: String
+
+    "Blurhash for the boxart image"
+    image_hash: String
+
+    "Width of the boxart image"
+    width: Int
+
+    "Height of the boxart image"
+    height: Int
+
+    "The games this boxart belongs to"
+    games: [Game!] @hasMany
+}
