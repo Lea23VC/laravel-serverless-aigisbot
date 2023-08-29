@@ -13,7 +13,6 @@
         "bref/bref": "^2.1",
         "bref/extra-php-extensions": "^1.2",
         "bref/laravel-bridge": "^2.1",
-        "dutchcodingcompany/filament-socialite": "dev-support-filament-v3",
         "filament/actions": "^3.0",
         "filament/filament": "3.0",
         "filament/forms": "^3.0",
@@ -28,6 +27,7 @@
         "mll-lab/graphql-php-scalars": "^6.2",
         "mll-lab/laravel-graphiql": "^3.1",
         "nuwave/lighthouse": "*",
+        "owenvoke/blade-fontawesome": "^2.4",
         "paragonie/sodium_compat": "^1.20",
         "socialiteproviders/auth0": "^4.1",
         "spatie/eloquent-sortable": "^4.0"
