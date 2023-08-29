@@ -14,7 +14,7 @@
         "bref/extra-php-extensions": "^1.2",
         "bref/laravel-bridge": "^2.1",
         "filament/actions": "^3.0",
-        "filament/filament": "3.0",
+        "filament/filament": "^3.0",
         "filament/forms": "^3.0",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.7",
