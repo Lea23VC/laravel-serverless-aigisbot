@@ -25,6 +25,11 @@ class EventServiceProvider extends ServiceProvider
         BoxartImageUploaded::class => [
             GenerateBoxartImageHash::class,
         ],
+
+        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+            // ... other providers
+            \SocialiteProviders\Auth0\Auth0ExtendSocialite::class . '@handle',
+        ],
     ];
 
     /**
