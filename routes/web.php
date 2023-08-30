@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,11 +22,25 @@ Route::get('/auth/redirect', function () {
 });
 
 Route::get('/auth/callback', function () {
-    $user = Socialite::driver('auth0')->user();
+    $auth0User = Socialite::driver('auth0')->user();
 
-    Log::info("user after callback: " . $user->id);
+    $user = User::updateOrCreate([
+        'email' => $auth0User->email,
+    ], [
+        'name' => $auth0User->name,
+    ]);
+
+    Auth::login($user);
+
+
+    return redirect('/admin');
 });
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect('/');
+})->name('logout');
