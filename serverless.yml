@@ -113,22 +113,22 @@ functions:
     # This function runs the Laravel website/API
     web:
         handler: public/index.php
-        runtime: php-81-fpm
+        runtime: php-83-fpm
         timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
         events:
             - httpApi: '*'
         layers:
-            - ${bref-extra:gd-php-81}
+            - ${bref-extra:gd-php-83}
 
         
 
     # This function lets us run artisan commands in Lambda
     artisan:
         handler: artisan
-        runtime: php-81-console
+        runtime: php-83-console
         timeout: 720 # in seconds
         layers:
-            - ${bref-extra:gd-php-81}
+            - ${bref-extra:gd-php-83}
         # Uncomment to also run the scheduler every minute
         #events:
         #    - schedule:
@@ -152,10 +152,10 @@ constructs:
         type: queue
         worker:
             handler: Bref\LaravelBridge\Queue\QueueHandler
-            runtime: php-81
+            runtime: php-83
             timeout: 60 # seconds
             layers:
-            - ${bref-extra:gd-php-81}
+            - ${bref-extra:gd-php-83}
 
 
 resources:
