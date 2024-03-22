@@ -6,6 +6,7 @@ use App\Models\Console;
 use App\Enums\ConsoleEnum;
 use App\Models\Game;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Lorisleiva\Actions\Concerns\AsAction;
 
 class GetRomsByCommand
@@ -34,8 +35,6 @@ class GetRomsByCommand
                 $password = $game->password;
                 $image = $game->boxart?->image;
 
-                Log::info("Game: $name");
-                Log::info("image: $image");
 
                 $imageUrl = $image ? Storage::disk('s3')->temporaryUrl($image, now()->addDays(7)) : null;
 
@@ -44,8 +43,7 @@ class GetRomsByCommand
                     $romDetail .= " (Password: $password)";
                 }
 
-                Log::info("ROM Detail: $romDetail");
-                Log::info("Image: $imageUrl");
+
 
                 return [
                     'rom' => $romDetail,
