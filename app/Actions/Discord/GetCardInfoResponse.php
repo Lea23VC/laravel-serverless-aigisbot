@@ -48,6 +48,7 @@ class GetCardInfoResponse
 
                 return [
                     'title' => $card['title'],
+                    'color' => hexdec('fdf104'),
                     'url' => $card['link'],
                     'image' => ['url' => $card['card_image_url']],
                     'fields' => $fields,
