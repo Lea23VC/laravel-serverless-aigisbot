@@ -17,7 +17,6 @@ class DiscordController extends Controller
     {
         // Your public key can be found in your application in the Developer Portal
         $PUBLIC_KEY = config('services.discord.public_key');
-        Log::info("PUBLIC_KEY: " . $PUBLIC_KEY);
         $headers = $request->headers->all();
         $signature = $headers['x-signature-ed25519'][0] ?? null;
         $timestamp = $headers['x-signature-timestamp'][0] ?? null;
@@ -50,40 +49,33 @@ class DiscordController extends Controller
                     $option = $data['options'][0];
                     // Execute the command and fetch ROMs along with their images
                     $roms = GetRomsByCommand::run($consoleEnum, $option['value']);
-
-                    // Prepare the ROMs list as a string, each on a new line, and fetch the first image URL
-                    $romsList = collect($roms)->map(function ($item) {
-                        return $item['rom']; // Extract just the ROM details for the list
-                    })->implode(PHP_EOL);
-
-                    // Attempt to fetch the first image URL from the ROMs, if available
-                    $imageUrl = collect($roms)->map(function ($item) {
-                        return $item['image']; // Extract the image URLs
-                    })->first();
-
-                    // Create an embed message with rich formatting, including the first image found
-                    $embed = [
-                        'title' => 'ROMs List',
-                        'description' => 'Here are the ROMs you requested:',
-                        'color' => hexdec('5865F2'), // Discord Blurple
-                        'fields' => [
-                            [
-                                'name' => 'Requested ROMs',
-                                'value' => !empty($romsList) ? $romsList : 'No ROMs found.', // Ensure there's a fallback if no ROMs
-                                'inline' => false,
+                    // use roms for every embed, and add the rom image if available
+                    $embeds = collect($roms)->map(function ($item) {
+                        $embed = [
+                            'title' => $item['name'],
+                            'color' => hexdec('fdf104'),
+                            'fields' => [
+                                [
+                                    'value' => $item['url'],
+                                    'inline' => false,
+                                ],
                             ],
-                        ],
+                        ];
 
-                    ];
+                        if ($item['image']) {
+                            $embed['image'] = ['url' => $item['image']];
+                        }
 
-                    if ($imageUrl) {
-                        $embed['image'] = ['url' => $imageUrl];
-                    }
+                        return $embed;
+                    })->toArray();
+
+
 
                     return response()->json([
+                        'content' => 'Here are the ROMs you requested:',
                         'type' => 4, // Type 4 is for message responses
                         'data' => [
-                            'embeds' => [$embed], // Embeds must be an array of embed objects
+                            'embeds' => $embeds,
                         ],
                     ]);
                 } catch (\Exception $e) {

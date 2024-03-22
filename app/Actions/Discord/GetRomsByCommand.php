@@ -43,10 +43,9 @@ class GetRomsByCommand
                     $romDetail .= " (Password: $password)";
                 }
 
-
-
                 return [
-                    'rom' => $romDetail,
+                    'name' => $romDetail,
+                    'url' => $url,
                     'image' => $imageUrl,
                 ];
             })
