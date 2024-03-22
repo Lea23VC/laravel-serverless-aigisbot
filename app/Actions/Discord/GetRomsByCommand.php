@@ -23,8 +23,6 @@ class GetRomsByCommand
 
         $roms = $this->console
             ->games()
-            ->with('boxart') // Assuming 'boxart' is the relationship name in your Game model
-            ->select('name', 'url', 'password')
             ->when($this->gameName, function ($query, $searchValue) {
                 return $query->where('name', 'LIKE', '%' . $searchValue . '%');
             })
@@ -35,6 +33,9 @@ class GetRomsByCommand
                 $url = $game->url;
                 $password = $game->password;
                 $image = $game->boxart?->image;
+
+                Log::info("Game: $name");
+                Log::info("image: $image");
 
                 $imageUrl = $image ? Storage::disk('s3')->temporaryUrl($image, now()->addDays(7)) : null;
 
