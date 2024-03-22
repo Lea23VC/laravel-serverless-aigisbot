@@ -49,7 +49,7 @@ class SendDiscordMessage implements ShouldQueue
                 $fields = collect($card['sellers_info'])->take(3)->map(function ($seller) { // Limiting sellers to 3 per card for brevity
                     return [
                         'name' => $seller['seller']['name'],
-                        'value' => "Price: " . number_format($seller['price']['CLP'], 0, ',', '.') . " CLP - Condition: " . $seller['condition'],
+                        'value' => "Price: " . number_format($seller['price']['CLP'], 0, ',', '.') . " CLP (" . $seller['price']['USD'] . " USD) - Condition: " . $seller['condition'],
                         'inline' => true,
                     ];
                 })->toArray();
