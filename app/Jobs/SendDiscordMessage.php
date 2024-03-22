@@ -73,8 +73,8 @@ class SendDiscordMessage implements ShouldQueue
 
             // Use the interaction token and application ID to send a follow-up message
             $token = $this->interactionData['token'];
-            $webhookId = $this->interactionData['id'];
-            $followupUrl = "https://discord.com/api/webhooks/{$webhookId}/{$token}";
+            $application_id = $this->interactionData['application_id'];
+            $followupUrl = "https://discord.com/api/webhooks/{$application_id}/{$token}";
 
             Http::post($followupUrl, $responseMessage);
         }
