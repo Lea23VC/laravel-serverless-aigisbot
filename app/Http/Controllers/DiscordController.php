@@ -7,6 +7,7 @@ use Log;
 use App\Models\Console;
 use App\Enums\ConsoleEnum;
 use App\Actions\Discord\GetRomsByCommand;
+use App\Models\Game;
 
 class DiscordController extends Controller
 {
@@ -47,12 +48,42 @@ class DiscordController extends Controller
             if ($consoleEnum) {
                 try {
                     $option = $data['options'][0];
+                    // Execute the command and fetch ROMs along with their images
                     $roms = GetRomsByCommand::run($consoleEnum, $option['value']);
 
+                    // Prepare the ROMs list as a string, each on a new line, and fetch the first image URL
+                    $romsList = collect($roms)->map(function ($item) {
+                        return $item['rom']; // Extract just the ROM details for the list
+                    })->implode(PHP_EOL);
+
+                    // Attempt to fetch the first image URL from the ROMs, if available
+                    $imageUrl = collect($roms)->map(function ($item) {
+                        return $item['image']; // Extract the image URLs
+                    })->first();
+
+                    // Create an embed message with rich formatting, including the first image found
+                    $embed = [
+                        'title' => 'ROMs List',
+                        'description' => 'Here are the ROMs you requested:',
+                        'color' => hexdec('5865F2'), // Discord Blurple
+                        'fields' => [
+                            [
+                                'name' => 'Requested ROMs',
+                                'value' => !empty($romsList) ? $romsList : 'No ROMs found.', // Ensure there's a fallback if no ROMs
+                                'inline' => false,
+                            ],
+                        ],
+
+                    ];
+
+                    if ($imageUrl) {
+                        $embed['image'] = ['url' => $imageUrl];
+                    }
+
                     return response()->json([
-                        'type' => 4,
+                        'type' => 4, // Type 4 is for message responses
                         'data' => [
-                            'content' => 'Here are the roms you requested:  ' . PHP_EOL . PHP_EOL . implode(PHP_EOL . PHP_EOL, $roms),
+                            'embeds' => [$embed], // Embeds must be an array of embed objects
                         ],
                     ]);
                 } catch (\Exception $e) {

@@ -19,8 +19,9 @@ class GetRomsByCommand
         $this->console = Console::where('name', $consoleEnum->value)->first();
         $this->gameName = $gameName;
 
-        $roms =  $this->console
+        $roms = $this->console
             ->games()
+            ->with('boxart') // Assuming 'boxart' is the relationship name in your Game model
             ->select('name', 'url', 'password')
             ->when($this->gameName, function ($query, $searchValue) {
                 return $query->where('name', 'LIKE', '%' . $searchValue . '%');
@@ -31,13 +32,17 @@ class GetRomsByCommand
                 $name = $game->name;
                 $url = $game->url;
                 $password = $game->password;
+                $image = $game->boxart->image;
 
-                // Include the password in the array only if it exists
+                $romDetail = "$name: $url";
                 if ($password) {
-                    return "$name: $url (Password: $password)";
+                    $romDetail .= " (Password: $password)";
                 }
 
-                return "$name: $url";
+                return [
+                    'rom' => $romDetail,
+                    'image' => $image,
+                ];
             })
             ->toArray();
 
