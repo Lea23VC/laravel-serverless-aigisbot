@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Enums\ConsoleEnum;
 use App\Actions\Discord\GetRomsResponse;
+use App\Jobs\SendDiscordMessage;
 
 class DiscordController extends Controller
 {
@@ -45,8 +46,11 @@ class DiscordController extends Controller
             } else {
 
                 if ($data['name'] == 'card') {
-                    $response = GetCardInfoResponse::run($data);
-                    return $response;
+
+                    $acknowledgeResponse = ['type' => 5];
+                    SendDiscordMessage::dispatch($bodyData);
+
+                    return response()->json($acknowledgeResponse);
                 }
             }
         } else {
