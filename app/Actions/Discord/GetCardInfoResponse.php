@@ -55,6 +55,7 @@ class GetCardInfoResponse
             })->toArray();
 
             return [
+                'content' => 'Here are the cards you requested:', // This message will be displayed before the embeds, you can change it to whatever you want
                 'type' => 4, // Respond with message
                 'data' => [
                     'embeds' => $embeds,
