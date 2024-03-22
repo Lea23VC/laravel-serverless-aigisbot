@@ -1,6 +1,5 @@
 <?php
 
-// In app/Jobs/ProcessCardCommand.php
 
 namespace App\Jobs;
 
@@ -10,6 +9,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class SendDiscordMessage implements ShouldQueue
 {
@@ -73,8 +73,11 @@ class SendDiscordMessage implements ShouldQueue
 
             // Use the interaction token and application ID to send a follow-up message
             $token = $this->interactionData['token'];
-            $application_id = $this->interactionData['application_id'];
+            $application_id = config("services.discord.bot_id", $this->interactionData['application_id']);
             $followupUrl = "https://discord.com/api/webhooks/{$application_id}/{$token}";
+
+            Log::info("Application ID: {$application_id}");
+            Log::info("Token: {$token}");
 
             Http::post($followupUrl, $responseMessage);
         }
