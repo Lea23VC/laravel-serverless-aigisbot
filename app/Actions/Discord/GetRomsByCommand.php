@@ -4,6 +4,8 @@ namespace App\Actions\Discord;
 
 use App\Models\Console;
 use App\Enums\ConsoleEnum;
+use App\Models\Game;
+use Illuminate\Support\Facades\Log;
 use Lorisleiva\Actions\Concerns\AsAction;
 
 class GetRomsByCommand
@@ -28,16 +30,19 @@ class GetRomsByCommand
             })
             ->limit(10)
             ->get()
-            ->map(function ($game) {
+            ->map(function (Game $game) {
                 $name = $game->name;
                 $url = $game->url;
                 $password = $game->password;
-                $image = $game->boxart->image;
+                $image = $game->boxart?->image;
 
                 $romDetail = "$name: $url";
                 if ($password) {
                     $romDetail .= " (Password: $password)";
                 }
+
+                Log::info("ROM Detail: $romDetail");
+                Log::info("Image: $image");
 
                 return [
                     'rom' => $romDetail,
