@@ -66,9 +66,7 @@ class SendDiscordMessage implements ShouldQueue
             $responseMessage = [
                 'content' => 'Here are the cards you requested:', // This message will be displayed before the embeds, you can change it to whatever you want
                 'type' => 4, // Respond with message
-                'data' => [
-                    'embeds' => $embeds,
-                ],
+                'embeds' => $embeds,
             ];
 
             // Use the interaction token and application ID to send a follow-up message
@@ -76,8 +74,6 @@ class SendDiscordMessage implements ShouldQueue
             $application_id = config("services.discord.bot_id", $this->interactionData['application_id']);
             $followupUrl = "https://discord.com/api/webhooks/{$application_id}/{$token}";
 
-            Log::info("Application ID: {$application_id}");
-            Log::info("Token: {$token}");
 
             Http::post($followupUrl, $responseMessage);
         }
