@@ -36,17 +36,19 @@ class GetRomsByCommand
                 $password = $game->password;
                 $image = $game->boxart?->image;
 
+                $imageUrl = $image ? Storage::disk('s3')->temporaryUrl($image, now()->addDays(7)) : null;
+
                 $romDetail = "$name: $url";
                 if ($password) {
                     $romDetail .= " (Password: $password)";
                 }
 
                 Log::info("ROM Detail: $romDetail");
-                Log::info("Image: $image");
+                Log::info("Image: $imageUrl");
 
                 return [
                     'rom' => $romDetail,
-                    'image' => $image,
+                    'image' => $imageUrl,
                 ];
             })
             ->toArray();
