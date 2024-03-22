@@ -38,13 +38,8 @@ class GetRomsByCommand
 
                 $imageUrl = $image ? Storage::disk('s3')->temporaryUrl($image, now()->addDays(7)) : null;
 
-                $romDetail = "$name: $url";
-                if ($password) {
-                    $romDetail .= " (Password: $password)";
-                }
-
                 return [
-                    'name' => $romDetail,
+                    'name' => $name,
                     'url' => $url,
                     'image' => $imageUrl,
                 ];

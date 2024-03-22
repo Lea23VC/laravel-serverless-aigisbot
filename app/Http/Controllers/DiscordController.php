@@ -56,6 +56,7 @@ class DiscordController extends Controller
                             'color' => hexdec('fdf104'),
                             'fields' => [
                                 [
+                                    'name' => 'Download',
                                     'value' => $item['url'],
                                     'inline' => false,
                                 ],
