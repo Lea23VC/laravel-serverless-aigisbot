@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Discord\GetCardInfoResponse;
 use Illuminate\Http\Request;
-use Log;
-use App\Models\Console;
+
 use App\Enums\ConsoleEnum;
-use App\Actions\Discord\GetRomsByCommand;
-use App\Models\Game;
+use App\Actions\Discord\GetRomsResponse;
 
 class DiscordController extends Controller
 {
@@ -39,55 +38,16 @@ class DiscordController extends Controller
 
         if ($bodyData['type'] == 2 && $isVerified) {
             $data = $bodyData['data'];
-            // $config = collect(config('games'))->first(function ($game) use ($data) {
-            //     return $game['name'] == $data['name'];
-            // });
-            $consoleEnum = ConsoleEnum::fromValue($data['name']);
 
-            if ($consoleEnum) {
-                try {
-                    $option = $data['options'][0];
-                    // Execute the command and fetch ROMs along with their images
-                    $roms = GetRomsByCommand::run($consoleEnum, $option['value']);
-                    // use roms for every embed, and add the rom image if available
-                    $embeds = collect($roms)->map(function ($item) {
-                        $embed = [
-                            'title' => $item['name'],
-                            'color' => hexdec('fdf104'),
-                            'fields' => [
-                                [
-                                    'name' => 'Download',
-                                    'value' => $item['url'],
-                                    'inline' => false,
-                                ],
-                            ],
-                        ];
-
-                        if ($item['image']) {
-                            $embed['image'] = ['url' => $item['image']];
-                        }
-
-                        return $embed;
-                    })->toArray();
-
-
-
-                    return response()->json([
-                        'content' => 'Here are the ROMs you requested:',
-                        'type' => 4, // Type 4 is for message responses
-                        'data' => [
-                            'embeds' => $embeds,
-                        ],
-                    ]);
-                } catch (\Exception $e) {
-                    // Instead of returning a response, throw an exception
-                    throw new \Exception('Some error happened: ' . $e->getMessage());
-                }
+            if (ConsoleEnum::hasValue($data['name'])) {
+                $response = GetRomsResponse::run($data);
+                return $response;
             } else {
-                return response()->json([
-                    'type' => 2,
-                    'content' => 'No roms found.',
-                ]);
+
+                if ($data['name'] == 'card') {
+                    $response = GetCardInfoResponse::run($data);
+                    return $response;
+                }
             }
         } else {
             return response('invalid request signature', 401);

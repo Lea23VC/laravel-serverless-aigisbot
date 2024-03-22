@@ -33,6 +33,8 @@ return [
 
     'discord' => [
         'public_key' => env('DISCORD_PUBLIC_KEY'),
+        'token' => env('DISCORD_TOKEN'),
+        'bot_id' => env('DISCORD_BOT_ID'),
     ],
 
     'auth0' => [
