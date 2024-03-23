@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\Discord\GetCardInfoResponse;
 use Illuminate\Http\Request;
 
 use App\Enums\ConsoleEnum;

@@ -18,4 +18,15 @@ use App\Http\Controllers\DiscordController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('/', [DiscordController::class, 'executeCommand']);
+
+
+// Group routes for API version 1
+Route::prefix('v1')->group(function () {
+    // This route is now accessible at /api/v1/user and requires sanctum authentication
+
+    // Grouping Discord-related routes under /discord
+    Route::prefix('discord')->group(function () {
+        // The Discord command execution route, now accessible at /api/v1/discord/interactions
+        Route::post('/interactions', [DiscordController::class, 'executeCommand']);
+    });
+});
