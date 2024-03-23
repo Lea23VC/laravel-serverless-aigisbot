@@ -23,7 +23,7 @@ class DiscordController extends Controller
 
             return match (true) {
                 ConsoleEnum::hasValue($data['name']) => GetRomsResponse::run($data),
-                $data['name'] === 'card' => GetCardInfoResponse::run($data),
+                $data['name'] === 'card' => GetCardInfoResponse::run($bodyData),
                 default => response('Unsupported command', 400),
             };
         }
