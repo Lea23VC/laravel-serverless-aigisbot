@@ -27,6 +27,6 @@ Route::prefix('v1')->group(function () {
     // Grouping Discord-related routes under /discord
     Route::prefix('discord')->group(function () {
         // The Discord command execution route, now accessible at /api/v1/discord/interactions
-        Route::post('/interactions', [DiscordController::class, 'executeCommand']);
+        Route::post('/interactions', [DiscordController::class, 'executeCommand'])->middleware('verify.discord.signature');
     });
 });

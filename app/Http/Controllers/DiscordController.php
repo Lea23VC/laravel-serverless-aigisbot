@@ -2,58 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Discord\GetCardInfoResponse;
 use Illuminate\Http\Request;
 
 use App\Enums\ConsoleEnum;
 use App\Actions\Discord\GetRomsResponse;
-use App\Jobs\SendDiscordMessage;
 
 class DiscordController extends Controller
 {
-    //
-
     public function executeCommand(Request $request)
     {
-        // Your public key can be found in your application in the Developer Portal
-        $PUBLIC_KEY = config('services.discord.public_key');
-        $headers = $request->headers->all();
-        $signature = $headers['x-signature-ed25519'][0] ?? null;
-        $timestamp = $headers['x-signature-timestamp'][0] ?? null;
-        $body = $request->getContent();
+        $bodyData = json_decode($request->getContent(), true);
 
-
-        $isVerified = sodium_crypto_sign_verify_detached(
-            hex2bin($signature),
-            $timestamp . $body,
-            hex2bin($PUBLIC_KEY)
-        );
-
-        $bodyData = json_decode($body, true);
-
-        if ($bodyData['type'] == 1 && $isVerified) {
-            return response()->json([
-                'type' => 1,
-            ]);
+        if ($bodyData['type'] == 1) {
+            return response()->json(['type' => 1]);
         }
 
-        if ($bodyData['type'] == 2 && $isVerified) {
+        if ($bodyData['type'] == 2) {
             $data = $bodyData['data'];
 
-            if (ConsoleEnum::hasValue($data['name'])) {
-                $response = GetRomsResponse::run($data);
-                return $response;
-            } else {
-
-                if ($data['name'] == 'card') {
-
-                    $acknowledgeResponse = ['type' => 5];
-                    SendDiscordMessage::dispatch($bodyData);
-
-                    return response()->json($acknowledgeResponse);
-                }
-            }
-        } else {
-            return response('invalid request signature', 401);
+            return match (true) {
+                ConsoleEnum::hasValue($data['name']) => GetRomsResponse::run($data),
+                $data['name'] === 'card' => GetCardInfoResponse::run($data),
+                default => response('Unsupported command', 400),
+            };
         }
+
+        // Fallback error response
+        return response('Unexpected error', 400);
     }
 }
