@@ -2,6 +2,7 @@
 
 namespace App\Actions\Discord;
 
+use App\Jobs\SendDiscordCardMessage;
 use Illuminate\Http\JsonResponse;
 use Lorisleiva\Actions\Concerns\AsAction;
 
@@ -11,7 +12,7 @@ class GetCardInfoResponse
 
     public function handle($data): JsonResponse
     {
-        SendDiscordMessage::dispatch($data);
+        SendDiscordCardMessage::dispatch($data);
         return response()->json(['type' => 5]);
     }
 }
