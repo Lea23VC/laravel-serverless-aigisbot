@@ -3,6 +3,8 @@
 
 namespace App\Jobs;
 
+use App\Models\FinancialIndicator;
+use App\Services\TCGScraper\TCGScraperService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -17,9 +19,10 @@ class SendDiscordCardMessage implements ShouldQueue
 
     protected $interactionData;
 
-    public function __construct($interactionData)
+    public function __construct($interactionData, private readonly TCGScraperService $service)
     {
         $this->interactionData = $interactionData;
+        $this->service = $service;
     }
 
     public function handle()
@@ -38,18 +41,21 @@ class SendDiscordCardMessage implements ShouldQueue
             return;
         }
 
-        // Fetch card information from the API
-        $response = Http::get("https://olazmvff49.execute-api.us-east-1.amazonaws.com/api/v1/search/{$apiType}/?name=" . urlencode($cardName));
+
+        $response = $this->service->tcgScraper()->search($cardName, $apiType);
+
+
+        $dolarValue = FinancialIndicator::first()->observed_dollar;
 
         if ($response->successful()) {
             $cards = $response->json();
             $cards = array_slice($cards, 0, 10); // Limit to 10 cards to avoid exceeding Discord embed limits
 
-            $embeds = collect($cards)->map(function ($card) {
-                $fields = collect($card['sellers_info'])->take(3)->map(function ($seller) { // Limiting sellers to 3 per card for brevity
+            $embeds = collect($cards)->map(function ($card) use ($dolarValue) {
+                $fields = collect($card['sellers_info'])->take(3)->map(function ($seller) use ($dolarValue) { // Limiting sellers to 3 per card for brevity
                     return [
                         'name' => $seller['seller']['name'],
-                        'value' => "Price: " . number_format($seller['price']['CLP'], 0, ',', '.') . " CLP (" . $seller['price']['USD'] . " USD) - Condition: " . $seller['condition'],
+                        'value' => "Price: " . number_format($dolarValue * $seller['price']['USD'], 0, ',', '.') . " CLP (" . $seller['price']['USD'] . " USD) - Condition: " . $seller['condition'],
                         'inline' => true,
                     ];
                 })->toArray();

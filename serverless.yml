@@ -85,6 +85,8 @@ provider:
         REPO_NAME: ${ssm:/aigisbot/prod/REPO_NAME}
         SESSION_DOMAIN: ${ssm:/aigisbot/prod/SESSION_DOMAIN}
         SANCTUM_STATEFUL_DOMAINS: ${ssm:/aigisbot/prod/SANCTUM_STATEFUL_DOMAINS}
+        MI_INDICADOR_BASE_URL: ${ssm:/aigisbot/prod/MI_INDICADOR_BASE_URL}
+        TCG_SCRAPER_BASE_URL: ${ssm:/aigisbot/prod/TCG_SCRAPER_BASE_URL}
 
 
     iamRoleStatements:

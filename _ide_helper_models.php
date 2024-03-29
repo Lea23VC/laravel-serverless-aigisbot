@@ -117,6 +117,176 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property string $discord_id
+ * @property string $name
+ * @property string|null $icon
+ * @property string|null $description
+ * @property string|null $type
+ * @property string|null $summary
+ * @property int $is_monetized
+ * @property int $bot_public
+ * @property int $bot_require_code_grant
+ * @property string|null $verify_key
+ * @property int|null $flags
+ * @property int $hook
+ * @property array|null $redirect_uris
+ * @property array|null $owner
+ * @property int|null $approximate_guild_count
+ * @property array|null $interactions_event_types
+ * @property int|null $interactions_version
+ * @property int|null $explicit_content_filter
+ * @property int|null $rpc_application_state
+ * @property int|null $store_application_state
+ * @property int|null $verification_state
+ * @property int $integration_public
+ * @property int $integration_require_code_grant
+ * @property int|null $discoverability_state
+ * @property string|null $discovery_eligibility_flags
+ * @property int|null $monetization_state
+ * @property string|null $monetization_eligibility_flags
+ * @property string|null $team
+ * @property string|null $guild
+ * @property string|null $interactions_endpoint_url
+ * @property array|null $integration_types
+ * @property array|null $integration_types_config
+ * @property int $internal_guild_restriction
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\DiscordCommand> $commands
+ * @property-read int|null $commands_count
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication query()
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereApproximateGuildCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereBotPublic($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereBotRequireCodeGrant($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereDiscordId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereDiscoverabilityState($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereDiscoveryEligibilityFlags($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereExplicitContentFilter($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereFlags($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereGuild($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereHook($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereIcon($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereIntegrationPublic($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereIntegrationRequireCodeGrant($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereIntegrationTypes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereIntegrationTypesConfig($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereInteractionsEndpointUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereInteractionsEventTypes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereInteractionsVersion($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereInternalGuildRestriction($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereIsMonetized($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereMonetizationEligibilityFlags($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereMonetizationState($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereOwner($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereRedirectUris($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereRpcApplicationState($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereStoreApplicationState($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereSummary($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereTeam($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereVerificationState($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordApplication whereVerifyKey($value)
+ */
+	class DiscordApplication extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property string $command_id
+ * @property int $application_id
+ * @property int $discord_application_id
+ * @property string $version
+ * @property string|null $default_member_permissions
+ * @property int $type
+ * @property string $name
+ * @property string $description
+ * @property int $dm_permission
+ * @property array|null $contexts
+ * @property array|null $integration_types
+ * @property array $options
+ * @property int $nsfw
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\DiscordApplication $application
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordCommand newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordCommand newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordCommand query()
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordCommand whereApplicationId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordCommand whereCommandId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordCommand whereContexts($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordCommand whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordCommand whereDefaultMemberPermissions($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordCommand whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordCommand whereDiscordApplicationId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordCommand whereDmPermission($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordCommand whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordCommand whereIntegrationTypes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordCommand whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordCommand whereNsfw($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordCommand whereOptions($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordCommand whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordCommand whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscordCommand whereVersion($value)
+ */
+	class DiscordCommand extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property string $development_unit
+ * @property string $average_value_index
+ * @property string $observed_dollar
+ * @property string $agreement_dollar
+ * @property string $euro
+ * @property float $consumer_price_index
+ * @property string $monthly_tax_unit
+ * @property float $monthly_economic_activity_index
+ * @property float $monetary_policy_rate
+ * @property string $copper_pound
+ * @property float $unemployment_rate
+ * @property string $bitcoin
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialIndicator newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialIndicator newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialIndicator query()
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialIndicator whereAgreementDollar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialIndicator whereAverageValueIndex($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialIndicator whereBitcoin($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialIndicator whereConsumerPriceIndex($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialIndicator whereCopperPound($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialIndicator whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialIndicator whereDevelopmentUnit($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialIndicator whereEuro($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialIndicator whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialIndicator whereMonetaryPolicyRate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialIndicator whereMonthlyEconomicActivityIndex($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialIndicator whereMonthlyTaxUnit($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialIndicator whereObservedDollar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialIndicator whereUnemploymentRate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialIndicator whereUpdatedAt($value)
+ */
+	class FinancialIndicator extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
  * @property string $name
  * @property string $url
  * @property string|null $password
@@ -131,14 +301,13 @@ namespace App\Models{
  * @property int|null $boxart_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property \App\Models\Boxart|null $boxart
+ * @property-read \App\Models\Boxart|null $boxart
  * @property-read \App\Models\Console $console
  * @property-read \App\Models\Region|null $region
  * @method static \Illuminate\Database\Eloquent\Builder|Game newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Game newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Game query()
  * @method static \Illuminate\Database\Eloquent\Builder|Game whereAvailability($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Game whereBoxart($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Game whereBoxartId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Game whereConsoleId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Game whereCreatedAt($value)

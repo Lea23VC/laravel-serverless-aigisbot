@@ -20,6 +20,6 @@ class TCGScraperResource
             request: $this->service->buildRequest()
         );
 
-        return $response->json();
+        return $response;
     }
 }
