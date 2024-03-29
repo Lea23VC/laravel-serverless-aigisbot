@@ -183,6 +183,8 @@ return [
         */
 
         App\Providers\TCGScraperProvider::class,
+        App\Providers\MiIndicadorProvider::class,
+
 
     ])->toArray(),
 

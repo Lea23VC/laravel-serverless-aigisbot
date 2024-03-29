@@ -22,7 +22,7 @@ class MiIndicadorService
     ) {
     }
 
-    public function tcgScraper(): MiIndicadorResource
+    public function miIndicador(): MiIndicadorResource
     {
         return new MiIndicadorResource(
             service: $this,
