@@ -24,6 +24,7 @@ class SendDiscordCardMessage implements ShouldQueue
     public function __construct($interactionData)
     {
         $this->interactionData = $interactionData;
+        $this->service = app(TCGScraperService::class);
     }
 
     public function handle()
