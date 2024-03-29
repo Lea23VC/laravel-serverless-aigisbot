@@ -44,4 +44,8 @@ return [
         'base_url' => env('AUTH0_BASE_URL'),
     ],
 
+    'tcg_scraper' => [
+        'base_url' => env('TCG_SCRAPER_BASE_URL'),
+    ],
+
 ];

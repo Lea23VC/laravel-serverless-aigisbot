@@ -177,6 +177,13 @@ return [
 
         \SocialiteProviders\Manager\ServiceProvider::class,
 
+        /*
+            * Custom Service Providers...
+        
+        */
+
+        App\Providers\TCGScraperProvider::class,
+
     ])->toArray(),
 
     /*

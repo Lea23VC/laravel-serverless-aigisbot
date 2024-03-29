@@ -6,7 +6,7 @@ use App\Services\Concerns\BuildBaseRequest;
 use App\Services\Concerns\CanSendGetRequests;
 use App\Services\Concerns\CanSendPostRequests;
 use App\Services\Concerns\CanSendPutRequests;
-use App\Services\Webpay\Resources\WebpayPlusResource;
+use App\Services\TCGScraper\Resources\TCGScraperResource;
 
 class TCGScraperService
 {
@@ -22,9 +22,9 @@ class TCGScraperService
     ) {
     }
 
-    public function webpayPlus(): WebpayPlusResource
+    public function tcgScraper(): TCGScraperResource
     {
-        return new WebpayPlusResource(
+        return new TCGScraperResource(
             service: $this,
         );
     }
