@@ -18,11 +18,12 @@ class SendDiscordCardMessage implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $interactionData;
+    protected TCGScraperService $service;
 
-    public function __construct($interactionData, private readonly TCGScraperService $service)
+    // Modify the constructor to only expect $interactionData. Laravel will auto-inject the TCGScraperService.
+    public function __construct($interactionData)
     {
         $this->interactionData = $interactionData;
-        $this->service = $service;
     }
 
     public function handle()
