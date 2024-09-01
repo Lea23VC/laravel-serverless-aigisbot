@@ -45,11 +45,11 @@ return [
     ],
 
     'tcg_scraper' => [
-        'base_url' => env('TCG_SCRAPER_BASE_URL'),
+        'base_url' => env('TCG_SCRAPER_BASE_URL', ''),
     ],
 
     'mi_indicador' => [
-        'base_url' => env('MI_INDICADOR_BASE_URL'),
+        'base_url' => env('MI_INDICADOR_BASE_URL', ''),
     ],
 
 ];
