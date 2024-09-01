@@ -3,7 +3,8 @@
 
 namespace App\Jobs;
 
-
+use App\Actions\Discord\GetRomsByCommand;
+use App\Enums\ConsoleEnum;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
