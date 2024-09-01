@@ -27,7 +27,7 @@ class GetRomsByCommand
             ->when($this->gameName, function ($query, $searchValue) {
                 return $query->where('name', 'LIKE', '%' . $searchValue . '%');
             })
-            ->limit(10)
+            ->limit(5)
             ->get()
             ->map(function (Game $game) {
                 $name = $game->name;
