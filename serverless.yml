@@ -10,91 +10,91 @@ provider:
         QUEUE_CONNECTION: sqs
         SQS_QUEUE: ${construct:jobs.queueUrl}
         APP_NAME: "Aigisbot"
-        APP_KEY: ${ssm:/aigisbot/prod/APP_KEY}
-        APP_DEBUG: ${ssm:/aigisbot/prod/APP_DEBUG}
-        APP_URL: ${ssm:/aigisbot/prod/APP_URL}
-        LOG_CHANNEL: ${ssm:/aigisbot/prod/LOG_CHANNEL}
-        LOG_DEPRECATIONS_CHANNEL: ${ssm:/aigisbot/prod/LOG_DEPRECATIONS_CHANNEL}
-        LOG_LEVEL: ${ssm:/aigisbot/prod/LOG_LEVEL}
-        DB_CONNECTION: ${ssm:/aigisbot/prod/DB_CONNECTION}
-        DB_HOST: ${ssm:/aigisbot/prod/DB_HOST}
-        DB_PORT: ${ssm:/aigisbot/prod/DB_PORT}
-        DB_DATABASE: ${ssm:/aigisbot/prod/DB_DATABASE}
-        DB_USERNAME: ${ssm:/aigisbot/prod/DB_USERNAME}
-        DB_PASSWORD: ${ssm:/aigisbot/prod/DB_PASSWORD}
-        BROADCAST_DRIVER: ${ssm:/aigisbot/prod/BROADCAST_DRIVER}
-        CACHE_DRIVER: ${ssm:/aigisbot/prod/CACHE_DRIVER}
-        FILESYSTEM_DISK: ${ssm:/aigisbot/prod/FILESYSTEM_DISK}
-        SESSION_DRIVER: ${ssm:/aigisbot/prod/SESSION_DRIVER}
-        SESSION_LIFETIME: ${ssm:/aigisbot/prod/SESSION_LIFETIME}
-        MEMCACHED_HOST: ${ssm:/aigisbot/prod/MEMCACHED_HOST}
-        REDIS_HOST: ${ssm:/aigisbot/prod/REDIS_HOST}
-        REDIS_PASSWORD: ${ssm:/aigisbot/prod/REDIS_PASSWORD}
-        REDIS_PORT: ${ssm:/aigisbot/prod/REDIS_PORT}
-        MAIL_MAILER: ${ssm:/aigisbot/prod/MAIL_MAILER}
-        MAIL_HOST: ${ssm:/aigisbot/prod/MAIL_HOST}
-        MAIL_PORT: ${ssm:/aigisbot/prod/MAIL_PORT}
-        MAIL_USERNAME: ${ssm:/aigisbot/prod/MAIL_USERNAME}
-        MAIL_PASSWORD: ${ssm:/aigisbot/prod/MAIL_PASSWORD}
-        MAIL_ENCRYPTION: ${ssm:/aigisbot/prod/MAIL_ENCRYPTION}
-        MAIL_FROM_ADDRESS: ${ssm:/aigisbot/prod/MAIL_FROM_ADDRESS}
-        MAIL_FROM_NAME: ${ssm:/aigisbot/prod/MAIL_FROM_NAME}
-        # AWS_ACCESS_KEY_ID: ${ssm:/aigisbot/prod/AWS_ACCESS_KEY_ID}
-        # AWS_SECRET_ACCESS_KEY: ${ssm:/aigisbot/prod/AWS_SECRET_ACCESS_KEY}
-        # AWS_DEFAULT_REGION: ${ssm:/aigisbot/prod/AWS_DEFAULT_REGION}
+        APP_KEY: ${ssm:/aigisbot/${self:provider.stage}/APP_KEY}
+        APP_DEBUG: ${ssm:/aigisbot/${self:provider.stage}/APP_DEBUG}
+        APP_URL: ${ssm:/aigisbot/${self:provider.stage}/APP_URL}
+        LOG_CHANNEL: ${ssm:/aigisbot/${self:provider.stage}/LOG_CHANNEL}
+        LOG_DEPRECATIONS_CHANNEL: ${ssm:/aigisbot/${self:provider.stage}/LOG_DEPRECATIONS_CHANNEL}
+        LOG_LEVEL: ${ssm:/aigisbot/${self:provider.stage}/LOG_LEVEL}
+        DB_CONNECTION: ${ssm:/aigisbot/${self:provider.stage}/DB_CONNECTION}
+        DB_HOST: ${ssm:/aigisbot/${self:provider.stage}/DB_HOST}
+        DB_PORT: ${ssm:/aigisbot/${self:provider.stage}/DB_PORT}
+        DB_DATABASE: ${ssm:/aigisbot/${self:provider.stage}/DB_DATABASE}
+        DB_USERNAME: ${ssm:/aigisbot/${self:provider.stage}/DB_USERNAME}
+        DB_PASSWORD: ${ssm:/aigisbot/${self:provider.stage}/DB_PASSWORD}
+        BROADCAST_DRIVER: ${ssm:/aigisbot/${self:provider.stage}/BROADCAST_DRIVER}
+        CACHE_DRIVER: ${ssm:/aigisbot/${self:provider.stage}/CACHE_DRIVER}
+        FILESYSTEM_DISK: ${ssm:/aigisbot/${self:provider.stage}/FILESYSTEM_DISK}
+        SESSION_DRIVER: ${ssm:/aigisbot/${self:provider.stage}/SESSION_DRIVER}
+        SESSION_LIFETIME: ${ssm:/aigisbot/${self:provider.stage}/SESSION_LIFETIME}
+        MEMCACHED_HOST: ${ssm:/aigisbot/${self:provider.stage}/MEMCACHED_HOST}
+        REDIS_HOST: ${ssm:/aigisbot/${self:provider.stage}/REDIS_HOST}
+        REDIS_PASSWORD: ${ssm:/aigisbot/${self:provider.stage}/REDIS_PASSWORD}
+        REDIS_PORT: ${ssm:/aigisbot/${self:provider.stage}/REDIS_PORT}
+        MAIL_MAILER: ${ssm:/aigisbot/${self:provider.stage}/MAIL_MAILER}
+        MAIL_HOST: ${ssm:/aigisbot/${self:provider.stage}/MAIL_HOST}
+        MAIL_PORT: ${ssm:/aigisbot/${self:provider.stage}/MAIL_PORT}
+        MAIL_USERNAME: ${ssm:/aigisbot/${self:provider.stage}/MAIL_USERNAME}
+        MAIL_PASSWORD: ${ssm:/aigisbot/${self:provider.stage}/MAIL_PASSWORD}
+        MAIL_ENCRYPTION: ${ssm:/aigisbot/${self:provider.stage}/MAIL_ENCRYPTION}
+        MAIL_FROM_ADDRESS: ${ssm:/aigisbot/${self:provider.stage}/MAIL_FROM_ADDRESS}
+        MAIL_FROM_NAME: ${ssm:/aigisbot/${self:provider.stage}/MAIL_FROM_NAME}
+        # AWS_ACCESS_KEY_ID: ${ssm:/aigisbot/${self:provider.stage}/AWS_ACCESS_KEY_ID}
+        # AWS_SECRET_ACCESS_KEY: ${ssm:/aigisbot/${self:provider.stage}/AWS_SECRET_ACCESS_KEY}
+        # AWS_DEFAULT_REGION: ${ssm:/aigisbot/${self:provider.stage}/AWS_DEFAULT_REGION}
         AWS_BUCKET: 
           Ref: MyS3Bucket
-        AWS_USE_PATH_STYLE_ENDPOINT: ${ssm:/aigisbot/prod/AWS_USE_PATH_STYLE_ENDPOINT}
-        # PUSHER_APP_ID: ${ssm:/aigisbot/prod/PUSHER_APP_ID}
-        # PUSHER_APP_KEY: ${ssm:/aigisbot/prod/PUSHER_APP_KEY}
-        # PUSHER_APP_SECRET: ${ssm:/aigisbot/prod/PUSHER_APP_SECRET}
-        # PUSHER_HOST: ${ssm:/aigisbot/prod/PUSHER_HOST}
-        PUSHER_PORT: ${ssm:/aigisbot/prod/PUSHER_PORT}
-        PUSHER_SCHEME: ${ssm:/aigisbot/prod/PUSHER_SCHEME}
-        PUSHER_APP_CLUSTER: ${ssm:/aigisbot/prod/PUSHER_APP_CLUSTER}
-        VITE_APP_NAME: ${ssm:/aigisbot/prod/VITE_APP_NAME}
-        VITE_PUSHER_APP_KEY: ${ssm:/aigisbot/prod/VITE_PUSHER_APP_KEY}
-        VITE_PUSHER_HOST: ${ssm:/aigisbot/prod/VITE_PUSHER_HOST}
-        VITE_PUSHER_PORT: ${ssm:/aigisbot/prod/VITE_PUSHER_PORT}
-        VITE_PUSHER_SCHEME: ${ssm:/aigisbot/prod/VITE_PUSHER_SCHEME}
-        VITE_PUSHER_APP_CLUSTER: ${ssm:/aigisbot/prod/VITE_PUSHER_APP_CLUSTER}
-        DISCORD_TOKEN: ${ssm:/aigisbot/prod/DISCORD_TOKEN}
-        DISCORD_PUBLIC_KEY: ${ssm:/aigisbot/prod/DISCORD_PUBLIC_KEY}
-        DISCORD_BOT_ID: ${ssm:/aigisbot/prod/DISCORD_BOT_ID}
-        # GOOGLE_AUTH: ${ssm:/aigisbot/prod/GOOGLE_AUTH}
-        ID_FOLDER_GBA: ${ssm:/aigisbot/prod/ID_FOLDER_GBA}
-        ID_FOLDER_GBC: ${ssm:/aigisbot/prod/ID_FOLDER_GBC}
-        ID_FOLDER_GB: ${ssm:/aigisbot/prod/ID_FOLDER_GB}
-        ID_FOLDER_NES: ${ssm:/aigisbot/prod/ID_FOLDER_NES}
-        ID_FOLDER_SNES: ${ssm:/aigisbot/prod/ID_FOLDER_SNES}
-        ID_FOLDER_64: ${ssm:/aigisbot/prod/ID_FOLDER_64}
-        ID_FOLDER_GAMECUBE: ${ssm:/aigisbot/prod/ID_FOLDER_GAMECUBE}
-        ID_FOLDER_DS: ${ssm:/aigisbot/prod/ID_FOLDER_DS}
-        ID_FOLDER_PSX: ${ssm:/aigisbot/prod/ID_FOLDER_PSX}
-        ID_FOLDER_PS2: ${ssm:/aigisbot/prod/ID_FOLDER_PS2}
-        ID_FOLDER_PSP: ${ssm:/aigisbot/prod/ID_FOLDER_PSP}
-        ID_FOLDER_3DS: ${ssm:/aigisbot/prod/ID_FOLDER_3DS}
-        ID_FOLDER_DREAMCAST: ${ssm:/aigisbot/prod/ID_FOLDER_DREAMCAST}
-        ID_FOLDER_WII: ${ssm:/aigisbot/prod/ID_FOLDER_WII}
-        ID_FOLDER_SWITCH: ${ssm:/aigisbot/prod/ID_FOLDER_SWITCH}
-        ID_FOLDER_GENESIS: ${ssm:/aigisbot/prod/ID_FOLDER_GENESIS}
-        SAGIRI_TOKEN: ${ssm:/aigisbot/prod/SAGIRI_TOKEN}
-        ASSET_URL: ${ssm:/aigisbot/prod/ASSET_URL}
-        SECRET_NAME: ${ssm:/aigisbot/prod/SECRET_NAME}
-        OWNER: ${ssm:/aigisbot/prod/OWNER}
-        REPO_NAME: ${ssm:/aigisbot/prod/REPO_NAME}
-        SESSION_DOMAIN: ${ssm:/aigisbot/prod/SESSION_DOMAIN}
-        SANCTUM_STATEFUL_DOMAINS: ${ssm:/aigisbot/prod/SANCTUM_STATEFUL_DOMAINS}
-        MI_INDICADOR_BASE_URL: ${ssm:/aigisbot/prod/MI_INDICADOR_BASE_URL}
-        TCG_SCRAPER_BASE_URL: ${ssm:/aigisbot/prod/TCG_SCRAPER_BASE_URL}
+        AWS_USE_PATH_STYLE_ENDPOINT: ${ssm:/aigisbot/${self:provider.stage}/AWS_USE_PATH_STYLE_ENDPOINT}
+        # PUSHER_APP_ID: ${ssm:/aigisbot/${self:provider.stage}/PUSHER_APP_ID}
+        # PUSHER_APP_KEY: ${ssm:/aigisbot/${self:provider.stage}/PUSHER_APP_KEY}
+        # PUSHER_APP_SECRET: ${ssm:/aigisbot/${self:provider.stage}/PUSHER_APP_SECRET}
+        # PUSHER_HOST: ${ssm:/aigisbot/${self:provider.stage}/PUSHER_HOST}
+        PUSHER_PORT: ${ssm:/aigisbot/${self:provider.stage}/PUSHER_PORT}
+        PUSHER_SCHEME: ${ssm:/aigisbot/${self:provider.stage}/PUSHER_SCHEME}
+        PUSHER_APP_CLUSTER: ${ssm:/aigisbot/${self:provider.stage}/PUSHER_APP_CLUSTER}
+        VITE_APP_NAME: ${ssm:/aigisbot/${self:provider.stage}/VITE_APP_NAME}
+        VITE_PUSHER_APP_KEY: ${ssm:/aigisbot/${self:provider.stage}/VITE_PUSHER_APP_KEY}
+        VITE_PUSHER_HOST: ${ssm:/aigisbot/${self:provider.stage}/VITE_PUSHER_HOST}
+        VITE_PUSHER_PORT: ${ssm:/aigisbot/${self:provider.stage}/VITE_PUSHER_PORT}
+        VITE_PUSHER_SCHEME: ${ssm:/aigisbot/${self:provider.stage}/VITE_PUSHER_SCHEME}
+        VITE_PUSHER_APP_CLUSTER: ${ssm:/aigisbot/${self:provider.stage}/VITE_PUSHER_APP_CLUSTER}
+        DISCORD_TOKEN: ${ssm:/aigisbot/${self:provider.stage}/DISCORD_TOKEN}
+        DISCORD_PUBLIC_KEY: ${ssm:/aigisbot/${self:provider.stage}/DISCORD_PUBLIC_KEY}
+        DISCORD_BOT_ID: ${ssm:/aigisbot/${self:provider.stage}/DISCORD_BOT_ID}
+        # GOOGLE_AUTH: ${ssm:/aigisbot/${self:provider.stage}/GOOGLE_AUTH}
+        ID_FOLDER_GBA: ${ssm:/aigisbot/${self:provider.stage}/ID_FOLDER_GBA}
+        ID_FOLDER_GBC: ${ssm:/aigisbot/${self:provider.stage}/ID_FOLDER_GBC}
+        ID_FOLDER_GB: ${ssm:/aigisbot/${self:provider.stage}/ID_FOLDER_GB}
+        ID_FOLDER_NES: ${ssm:/aigisbot/${self:provider.stage}/ID_FOLDER_NES}
+        ID_FOLDER_SNES: ${ssm:/aigisbot/${self:provider.stage}/ID_FOLDER_SNES}
+        ID_FOLDER_64: ${ssm:/aigisbot/${self:provider.stage}/ID_FOLDER_64}
+        ID_FOLDER_GAMECUBE: ${ssm:/aigisbot/${self:provider.stage}/ID_FOLDER_GAMECUBE}
+        ID_FOLDER_DS: ${ssm:/aigisbot/${self:provider.stage}/ID_FOLDER_DS}
+        ID_FOLDER_PSX: ${ssm:/aigisbot/${self:provider.stage}/ID_FOLDER_PSX}
+        ID_FOLDER_PS2: ${ssm:/aigisbot/${self:provider.stage}/ID_FOLDER_PS2}
+        ID_FOLDER_PSP: ${ssm:/aigisbot/${self:provider.stage}/ID_FOLDER_PSP}
+        ID_FOLDER_3DS: ${ssm:/aigisbot/${self:provider.stage}/ID_FOLDER_3DS}
+        ID_FOLDER_DREAMCAST: ${ssm:/aigisbot/${self:provider.stage}/ID_FOLDER_DREAMCAST}
+        ID_FOLDER_WII: ${ssm:/aigisbot/${self:provider.stage}/ID_FOLDER_WII}
+        ID_FOLDER_SWITCH: ${ssm:/aigisbot/${self:provider.stage}/ID_FOLDER_SWITCH}
+        ID_FOLDER_GENESIS: ${ssm:/aigisbot/${self:provider.stage}/ID_FOLDER_GENESIS}
+        SAGIRI_TOKEN: ${ssm:/aigisbot/${self:provider.stage}/SAGIRI_TOKEN}
+        ASSET_URL: ${ssm:/aigisbot/${self:provider.stage}/ASSET_URL}
+        SECRET_NAME: ${ssm:/aigisbot/${self:provider.stage}/SECRET_NAME}
+        OWNER: ${ssm:/aigisbot/${self:provider.stage}/OWNER}
+        REPO_NAME: ${ssm:/aigisbot/${self:provider.stage}/REPO_NAME}
+        SESSION_DOMAIN: ${ssm:/aigisbot/${self:provider.stage}/SESSION_DOMAIN}
+        SANCTUM_STATEFUL_DOMAINS: ${ssm:/aigisbot/${self:provider.stage}/SANCTUM_STATEFUL_DOMAINS}
+        MI_INDICADOR_BASE_URL: ${ssm:/aigisbot/${self:provider.stage}/MI_INDICADOR_BASE_URL}
+        TCG_SCRAPER_BASE_URL: ${ssm:/aigisbot/${self:provider.stage}/TCG_SCRAPER_BASE_URL}
 
 
     iamRoleStatements:
-                - Effect: Allow
-                  Action:
-                    - s3:*
-                  Resource: 
-                    - "arn:aws:s3:::aigisbot-images/*"
+      - Effect: Allow
+        Action:
+          - s3:*
+        Resource:
+          - arn:aws:s3:::*
 package:
     # Files and directories to exclude from deployment
     patterns:
@@ -151,6 +151,9 @@ constructs:
             '/robots.txt': public/robots.txt
             '/vendor/telescope/*': public/vendor/telescope
 
+        domain: 'roms.aigisbot.online'
+        certificate: '${ssm:/aigisbot/${self:provider.stage}/ACM_CERT_ARN}'
+
 
     jobs:
         type: queue
@@ -167,19 +170,4 @@ resources:
     MyS3Bucket:
       Type: AWS::S3::Bucket
       Properties:
-        BucketName: aigisbot-images
-        CorsConfiguration:
-          CorsRules:
-            - AllowedHeaders:
-                - "*"
-              AllowedMethods:
-                - GET
-                - PUT
-                - POST
-                - DELETE
-                - HEAD
-              AllowedOrigins:
-                - "http://127.0.0.1:8000"
-                - "https://pt69uke176.execute-api.us-east-1.amazonaws.com"
-                - "https://d32n8agm3v8nrq.cloudfront.net"
-                - "https://roms.aigisbot.xyz"
+        BucketName: aigisbot-media-v2
