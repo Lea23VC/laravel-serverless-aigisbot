@@ -27,10 +27,10 @@ class SendDiscordRomMessage implements ShouldQueue
     public function handle()
     {
         // Extract the first option from the 'options' array
-        $option = $this->interactionData['data']['options'][0];
+        $data = $this->interactionData['data'];
 
         // Get the console enum based on the 'name' from the first option
-        $consoleEnum = ConsoleEnum::fromValue($option['name']);
+        $consoleEnum = ConsoleEnum::fromValue($data['name']);
 
         if (!$consoleEnum) {
             return response()->json([
@@ -40,7 +40,7 @@ class SendDiscordRomMessage implements ShouldQueue
         }
 
         // Execute the command and fetch ROMs along with their images
-        $roms = GetRomsByCommand::run($consoleEnum, $option['value']);
+        $roms = GetRomsByCommand::run($consoleEnum, $data['options'][0]['value']);
 
         // use roms for every embed, and add the rom image if available
         $embeds = collect($roms)->map(function ($item) {
