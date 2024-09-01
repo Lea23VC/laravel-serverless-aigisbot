@@ -66,9 +66,7 @@ class SendDiscordRomMessage implements ShouldQueue
         $responseMessage = [
             'content' => 'Here are the ROMs you requested:',
             'type' => 4, // Type 4 is for message responses
-            'data' => [
-                'embeds' => $embeds,
-            ],
+            'embeds' => $embeds,
         ];
 
         // Use the interaction token and application ID to send a follow-up message
