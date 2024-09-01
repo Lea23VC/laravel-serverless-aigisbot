@@ -26,7 +26,7 @@ class SendDiscordRomMessage implements ShouldQueue
     public function handle()
     {
         // Extract details from $interactionData
-        $data = $this->interactionData['interactionData']['options']; // Ensure this path matches your data structure
+        $data = $this->interactionData['data']['options']; // Ensure this path matches your data structure
         $consoleEnum = ConsoleEnum::fromValue($data['name']);
         if (!$consoleEnum) {
             return response()->json([
