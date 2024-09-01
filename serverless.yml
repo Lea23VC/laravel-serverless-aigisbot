@@ -5,6 +5,7 @@ provider:
     # The AWS region in which to deploy (us-east-1 is the default)
     region: us-east-1
     # Environment variables
+    stage: ${opt:stage, 'dev'}  # Default to 'dev' if not specified
     environment:
         APP_ENV: production # Or use ${sls:stage} if you want the environment to match the stage
         QUEUE_CONNECTION: sqs
